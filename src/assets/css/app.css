@@ -1,25 +1,94 @@
-/* app css stylesheet */
 
-.menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
+/************************************
+*
+* aqua: #336699
+* gray: #999999
+* char: #666666
+* red : #900000
+* ash : #c3c3c3
+* blk : #333333
+* gree: #00a000
+*
+* dc01: #465a9b
+* dc02: #6493ed
+
+
+* rs01: #465a9b
+* rs02: #527de8
+* rs03: #666666
+* rs04: #798489
+*
+*************************************/
+
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+
+body {
+  font-family: 'Lato', Calibri, Arial, sans-serif;
+  color: #333;
 }
 
-.menu:before {
-  content: "[";
+.site-indent {margin: 50px;}
+
+#site-main-division {
+  background:url(/src/assets/img/common/tignes-mountain-biking-3.jpg) top no-repeat;
+  width: 1200px;
+  background-attachment: fixed; height: 800px; margin: 0 10px 0 10px;
 }
 
-.menu:after {
-  content: "]";
+.red {
+  background-color: red;
 }
 
-.menu > li {
-  display: inline;
+.blue {
+  background-color: blue;
 }
 
-.menu > li + li:before {
-  content: "|";
-  padding-right: 0.3em;
+.green {
+  background-color: green;
 }
+
+.yellow {
+  background-color: yellow;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  display: inline-block;
+  margin-left: 3px;
+  position: relative;
+  top: 0px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 20px;
+  border: 4px solid #333;
+}
+
+table.friend {}
+table.friend tr td.prop {color: #999; font-weight: bold; width: 100px;}
+table.friend tr td.val {color: #333;}
+
+table.member {}
+table.member tr td.prop {color: #999; font-weight: bold; width: 100px;}
+table.member tr td.val {color: #333;}
+
+.text-large {
+  font-size: 24px;
+}
+
+.popover {
+  max-width: 800px; /* optional max width */
+  width: intrinsic; /* Safari/WebKit uses a non-standard name */
+  width: -moz-max-content; /* Firefox/Gecko */
+  width: -webkit-max-content; /* Chrome */
+}
+
+.sponsor-image {
+  margin-top:40px;
+  margin-bottom: 40px;
+}
+
+.active { color: red; font-weight: bold; }
