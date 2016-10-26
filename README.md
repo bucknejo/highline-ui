@@ -1,4 +1,4 @@
-# copperhead - cloned from angular-seed
+# highline-ui - cloned from angular-seed
 
 This project has taken the angular-seed project and modified it to include a number of 
 additional angular packages in addition to a rough implementation for grunt.  The 
