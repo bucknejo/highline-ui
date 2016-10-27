@@ -1,3 +1,5 @@
+'use strict';
+
 function HighlineHeaderController() {
 
     console.log('in HighlineHeaderController');
