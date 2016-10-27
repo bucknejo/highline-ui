@@ -30,7 +30,7 @@ body {
 .site-indent {margin: 50px;}
 
 #site-main-division {
-  background:url(/src/assets/img/common/tignes-mountain-biking-3.jpg) top no-repeat;
+  background:url(../../assets/img/common/tignes-mountain-biking-3.jpg) top no-repeat;
   width: 1200px;
   background-attachment: fixed; height: 800px; margin: 0 10px 0 10px;
 }
@@ -92,3 +92,28 @@ table.member tr td.val {color: #333;}
 }
 
 .active { color: red; font-weight: bold; }
+
+.hlAccount {
+  border: 2px solid #333;
+  height: 30vh;
+  width: 100%;
+}
+
+.hlActivity {
+  border: 2px solid #465a9b;
+  height: 30vh;
+  width: 100%;
+}
+
+.hlData {
+  border: 2px solid #527de8;
+  height: 50vh;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.hlAlley {
+  border: 2px solid #900000;
+  height: 100%;
+  width: 100%;
+}

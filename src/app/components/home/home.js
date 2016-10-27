@@ -6,10 +6,3 @@ angular.module('highline-ui').controller('HighlineHomeController', ['$scope', fu
 
 }]);
 
-/*
-angular.module('highline-ui').component('highlineHome', {
-    templateUrl: 'app/components/home/home.tpl.html',
-    controller: HighlineHomeController,
-    bindings: {}
-});
-*/

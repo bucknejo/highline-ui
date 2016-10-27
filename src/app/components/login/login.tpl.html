@@ -1,0 +1,55 @@
+<div class="row">
+    <div class="col-md-2">
+        <div ui-view="hlAlleyLeft"></div>
+    </div>
+    <div class="col-md-8">
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <form name="hlFormLogin">
+
+                    <div class="form-group" ng-class="{'has-error': hlFormLogin.email.$touched && hlFormLogin.email.$invalid}">
+                        <label class="" for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Email" class="form-control" ng-model="user.email" required>
+                        <div ng-messages="hlFormLogin.email.$error" class="help-block">
+                            <div ng-message="required">Please enter your email address.</div>
+                            <div ng-message="email">Your email address is invalid.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-class="{'has-error': hlFormLogin.password.$touched && hlFormLogin.password.$invalid}">
+                        <label class="" for="email">Password</label>
+                        <input type="password" id="password" name="password" class="form-control" ng-model="user.password" required>
+                        <div ng-messages="hlFormLogin.password.$error" class="help-block">
+                            <div ng-message="required">Please enter your password.</div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-danger" ng-show="showResult" style="margin-top: 10px;">
+                        <div>ID: {{result.id}}</div>
+                        <div>Authenticated: {{result.authenticated}}</div>
+                        <div>Code: {{result.code}}</div>
+                        <div>Message: {{result.message}}</div>
+                        <div>Error: {{result.error}}</div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <button type="button" class="btn btn-primary" ng-click="login(hlFormLogin)" ng-disabled="hlFormLogin.$invalid">Submit</button>
+                <button type="button" class="btn btn-primary" ng-click="register()" ng-disabled="">Register</button>
+                <button type="button" class="btn btn-primary" ng-click="cancel()" ng-disabled="">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-2">
+        <div ui-view="hlAlleyRight"></div>
+    </div>
+
+</div>
+
