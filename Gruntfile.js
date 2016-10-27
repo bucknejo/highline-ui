@@ -50,13 +50,13 @@ module.exports = function(grunt) {
                 separator: ';'
             },
             dist: {
-                src: [ 'src/app/**/*.js', 'tmp/*.js' ],
+                src: [ 'src/assets/js/*.js', 'src/app/**/*.js', 'tmp/*.js' ],
                 dest: 'dist/app.js'
             }
         },
 
         jshint: {
-            all: [ 'Gruntfile.js', 'src/app/*.js', 'src/app/**/*.js' ],
+            all: [ 'Gruntfile.js', 'src/app/**/*.js', 'src/assets/js/*.js'],
             options: {
                 "strict": "global",
                 "node": true,
@@ -89,7 +89,7 @@ module.exports = function(grunt) {
             server: {
                 options: {
                     hostname: 'localhost',
-                    port: 8080,
+                    port: 8090,
                     base: 'src'
                 }
             }
@@ -97,14 +97,14 @@ module.exports = function(grunt) {
 
         watch: {
             dev: {
-                files: [ 'Gruntfile.js', 'app/**/*.js', 'app/**/*.tpl.html' ],
+                files: [ 'Gruntfile.js', 'src/app/**/*.js', 'src/app/**/*.tpl.html', 'src/assets/js/*.js', 'karma.conf.js' ],
                 tasks: [ 'jshint', 'karma:unit', 'html2js:dist', 'concat:dist', 'clean:temp' ],
                 options: {
                     atBegin: true
                 }
             },
             min: {
-                files: [ 'Gruntfile.js', 'app/**/*.js', 'app/**/*.tpl.html' ],
+                files: [ 'Gruntfile.js', 'src/app/**/*.js', 'src/app/**/*.tpl.html' ],
                 tasks: [ 'jshint', 'karma:unit', 'html2js:dist', 'concat:dist', 'clean:temp', 'uglify:dist' ],
                 options: {
                     atBegin: true

@@ -3,6 +3,12 @@
 // Declare app level module which depends on views, and components
 var highline = angular.module('highline-ui', ['ui.router', 'ngMessages']);
 
+highline.constant("HIGHLINE", {
+  "SERVER": "http://localhost:8091/highline/",
+  "PORT": "8091",
+  "TEST": "test"
+});
+
 highline.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
   var home = {
@@ -10,7 +16,7 @@ highline.config(['$stateProvider', '$urlRouterProvider', function($stateProvider
     url: '/',
     templateUrl: 'app/components/home/home.tpl.html',
     controller: 'HighlineHomeController'
-  }
+  };
 
   var login = {
     name: 'login',
@@ -27,7 +33,7 @@ highline.config(['$stateProvider', '$urlRouterProvider', function($stateProvider
         templateUrl: 'app/shared/alley-right.tpl.html'
       }
     }
-  }
+  };
 
   var dashboard = {
     name: 'dashboard',
@@ -53,7 +59,7 @@ highline.config(['$stateProvider', '$urlRouterProvider', function($stateProvider
         templateUrl: 'app/components/dashboard/templates/dashboard-alley-right.tpl.html'
       }
     }
-  }
+  };
 
   $stateProvider.state(home);
   $stateProvider.state(login);

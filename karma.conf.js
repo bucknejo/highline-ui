@@ -5,12 +5,21 @@ module.exports = function(config) {
     basePath: './src/',
 
     files: [
-       'assets/libs/jquery/dist/jquery.js',
-       'assets/libs/angular/angular.js',
-       'assets/libs/angular-route/angular-route.js',
-       'assets/libs/angular-mocks/angular-mocks.js',
-       'assets/js/*.js',
-       'app/components/**/*.js'
+        'assets/libs/angular/angular.js',
+        'assets/libs/angular-mocks/angular-mocks.js',
+        'assets/libs/angular-ui-router/release/angular-ui-router.js',
+        'assets/libs/angular-bootstrap/ui-bootstrap-tpls.js',
+        'assets/libs/angular-animate/angular-animate.js',
+        'assets/libs/angular-cookies/angular-cookies.js',
+        'assets/libs/angular-resource/angular-resource.js',
+        'assets/libs/angular-sanitize/angular-sanitize.js',
+        'assets/libs/angular-touch/angular-touch.js',
+        'assets/libs/angular-messages/angular-messages.js',
+        'assets/libs/jquery/dist/jquery.js',
+        'assets/libs/bootstrap/dist/js/bootstrap.js',
+        'assets/js/*.js',
+        'app/**/*.js',
+        'app/test/*.js'
     ],
 
     autoWatch: true,
