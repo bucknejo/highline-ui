@@ -1,7 +1,7 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-var highline = angular.module('highline-ui', ['ui.router', 'ngMessages']);
+var highline = angular.module('highline-ui', ['ui.router', 'ui.bootstrap', 'ngMessages', 'ngResource']);
 
 highline.constant("HIGHLINE", {
   "SERVER": "http://localhost:8091/highline/",
@@ -27,10 +27,10 @@ highline.config(['$stateProvider', '$urlRouterProvider', function($stateProvider
         controller: 'HighlineLoginController'
       },
       'hlAlleyLeft@login': {
-        templateUrl: 'app/shared/alley-left.tpl.html'
+        templateUrl: 'app/shared/templates/alley-left.tpl.html'
       },
       'hlAlleyRight@login': {
-        templateUrl: 'app/shared/alley-right.tpl.html'
+        templateUrl: 'app/shared/templates/alley-right.tpl.html'
       }
     }
   };
@@ -47,10 +47,12 @@ highline.config(['$stateProvider', '$urlRouterProvider', function($stateProvider
         templateUrl: 'app/components/dashboard/templates/dashboard-alley-left.tpl.html'
       },
       'hlActivity@dashboard': {
-        templateUrl: 'app/components/dashboard/templates/dashboard-activity.tpl.html'
+        templateUrl: 'app/components/dashboard/templates/dashboard-activity.tpl.html',
+        controller: 'HighlineDashboardActivityController'
       },
       'hlAccount@dashboard': {
-        templateUrl: 'app/components/dashboard/templates/dashboard-account.tpl.html'
+        templateUrl: 'app/components/dashboard/templates/dashboard-account.tpl.html',
+        controller: 'HighlineDashboardAccountController'
       },
       'hlData@dashboard': {
         templateUrl: 'app/components/dashboard/templates/dashboard-data.tpl.html'

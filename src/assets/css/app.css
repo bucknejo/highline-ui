@@ -113,7 +113,14 @@ table.member tr td.val {color: #333;}
 }
 
 .hlAlley {
-  border: 2px solid #900000;
+  border: 2px dotted #900000;
   height: 100%;
   width: 100%;
+  text-align: center;
+}
+
+.segment-header {
+  font-size: 1.1em;
+  color: #666;
+  border-bottom: 1px solid #999;
 }
