@@ -32,3 +32,43 @@ highlineFilters.filter('yn', function() {
         return (input === 1) ? 'Yes' : 'No';
     };
 });
+
+highlineFilters.filter('bt', function() {
+    return function(input) {
+        var suspension = '';
+        switch (input) {
+            case 'FS':
+                suspension = 'Full Suspension';
+                break;
+            case 'HT':
+                suspension = 'Hard Tail';
+                break;
+            default:
+                break;
+        }
+        return suspension;
+    };
+});
+
+highlineFilters.filter('activityType', function() {
+    return function(input) {
+        var icon = '<i class="fa fa-question" aria-hidden="true"></i>';
+
+        if (input.indexOf('ADD') !== -1) {
+            icon = '<i class="fa fa-plus" aria-hidden="true"></i>';
+        }
+
+        if (input.indexOf('REMOVE') !== -1) {
+            icon = '<i class="fa fa-minus" aria-hidden="true"></i>';
+        }
+
+        if (input.indexOf('FIXED') !== -1) {
+            icon = '<i class="fa fa-wrench" aria-hidden="true"></i>';
+        }
+
+        if (input.indexOf('BROKE') !== -1) {
+            icon = '<i class="fa fa-chain-broken" aria-hidden="true"></i>';
+        }
+        return icon;
+    };
+});

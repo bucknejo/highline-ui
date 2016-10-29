@@ -2,8 +2,76 @@
     <div class="segment-header">Data</div>
 
     <uib-tabset active="active" class="data-tabset">
-        <uib-tab index="0" heading="Rides"></uib-tab>
-        <uib-tab index="1" heading="Groups"></uib-tab>
+        <uib-tab index="0" heading="Rides">
+
+            <div>
+
+                <table class="table table-striped table-hover activity-table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                        <th class="text-center">Joinable</th>
+                        <th class="text-center">Tempo</th>
+                        <th class="text-center">Drop</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="ride in rides" ng-click="rideDetail(ride.id)" ng-class="{warning: ride.id === idSelected}">
+                        <td>{{ride.id}}</td>
+                        <td>{{ride.name}}</td>
+                        <td>{{ride.date | date:'yyyy-MM-dd'}}</td>
+                        <td>{{ride.time}}</td>
+                        <td>{{ride.status}}</td>
+                        <td class="text-center">{{ride.joinable | yn}}</td>
+                        <td class="text-center">{{ride.tempo}}</td>
+                        <td class="text-center">{{ride.drop | yn}}</td>
+                        <td class="text-center">
+                            <button type="button" class="close" aria-label="Close" ng-click=""><span aria-hidden="true">&times;</span></button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            
+        </uib-tab>
+        <uib-tab index="1" heading="Groups">
+
+            <div>
+
+                <table class="table table-striped table-hover activity-table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th class="text-center">Joinable</th>
+                        <th class="text-center">Drop</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="gruppe in gruppes" ng-click="gruppeDetail(gruppe.id)" ng-class="{warning: gruppe.id === idSelected}">
+                        <td>{{gruppe.id}}</td>
+                        <td>{{gruppe.name}}</td>
+                        <td>{{gruppe.description}}</td>
+                        <td class="text-center">{{gruppe.joinable | yn}}</td>
+                        <td class="text-center">{{gruppe.drop | yn}}</td>
+                        <td class="text-center">
+                            <button type="button" class="close" aria-label="Close" ng-click=""><span aria-hidden="true">&times;</span></button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            
+        </uib-tab>
         <uib-tab index="2" heading="Friends"></uib-tab>
     </uib-tabset>
 </div>

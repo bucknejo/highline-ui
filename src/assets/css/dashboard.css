@@ -9,9 +9,30 @@
     padding: 0;
 }
 
-#highline-dashboard .activity-table {
-    font-size: 0.7em;
+#highline-dashboard .account-equipment-list {
+    font-size: 0.8em;
     margin: 10px 0 10px 0;
+    list-style-type: none;
+    padding: 0;
+}
+
+#highline-dashboard .account-equipment-list .ae-li-bg {
+    font-size: 0.7em;
+    color: #333;
+    font-weight: bold;
+    width: 80px;
+}
+
+#highline-dashboard .account-equipment-list .ae-li-sm {
+    font-size: 0.5em;
+    color: #999;
+    width: 80px;
+}
+
+#highline-dashboard .activity-table {
+    color: #333;
+    font-size: 1em;
+    /*margin: 10px 0 10px 0;*/
 }
 
 #highline-dashboard .data-tabset {

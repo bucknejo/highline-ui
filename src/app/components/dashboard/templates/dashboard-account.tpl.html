@@ -12,5 +12,23 @@
 
     <div class="segment-header">Equipment</div>
 
+    <ul class="account-equipment-list">
+        <li ng-repeat="e in user.equipment">
+            <div style="display:inline-block;">
+                <div class="ae-li-bg">{{e.type}}</div>
+                <div class="ae-li-sm">{{e.style | bt}}</div>
+            </div>
+            <div style="display: inline-block;">
+                <div class="ae-li-bg">{{e.make}}</div>
+                <div class="ae-li-sm">{{e.model}}</div>
+            </div>
+            <!--
+            <div style="display: inline-block;">
+                <div class="ae-li-bg">{{e.name}}</div>
+                <div class="ae-li-sm">&nbsp;</div>
+            </div>
+            -->
+        </li>
+    </ul>
 
 </div>

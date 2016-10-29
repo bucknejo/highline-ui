@@ -55,7 +55,8 @@ highline.config(['$stateProvider', '$urlRouterProvider', function($stateProvider
         controller: 'HighlineDashboardAccountController'
       },
       'hlData@dashboard': {
-        templateUrl: 'app/components/dashboard/templates/dashboard-data.tpl.html'
+        templateUrl: 'app/components/dashboard/templates/dashboard-data.tpl.html',
+        controller: 'HighlineDashboardDataController'
       },
       'hlAlleyRight@dashboard': {
         templateUrl: 'app/components/dashboard/templates/dashboard-alley-right.tpl.html'
