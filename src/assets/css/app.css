@@ -124,3 +124,12 @@ table.member tr td.val {color: #333;}
   color: #666;
   border-bottom: 1px solid #999;
 }
+
+.border-bottom {
+  border-bottom: 1px solid #999;
+  margin: 0 0 10px 0;
+}
+
+a.site-link-1 {color: #333; text-decoration: none; cursor: hand; cursor: pointer;}
+a.site-link-1:hover {color: #999; text-decoration: none;}
+a.site-link-1:visited {color: #333; text-decoration: none;}

@@ -64,10 +64,46 @@ highline.config(['$stateProvider', '$urlRouterProvider', function($stateProvider
     }
   };
 
+  var account = {
+    name: 'account',
+    url: '/account',
+    templateUrl: 'app/components/account/account.tpl.html',
+    controller: 'HighlineAccountController'
+  };
+
+  var friends = {
+    name: 'friends',
+    url: '/friends',
+    templateUrl: 'app/components/friends/friends/tpl.html',
+    controller: 'HighlineFriendsController'
+  };
+
+  var groups = {
+    name: 'groups',
+    url: '/groups',
+    templateUrl: 'app/components/groups/groups.tpl.html',
+    controller: 'HighlineGroupsController'
+  };
+
+  var rides = {
+    name: 'rides',
+    url: '/rides',
+    templateUrl: 'app/components/rides/rides.tpl.html',
+    controller: 'HighlineRidesController'
+  };
+
   $stateProvider.state(home);
   $stateProvider.state(login);
   $stateProvider.state(dashboard);
+  $stateProvider.state(account);
+  $stateProvider.state(friends);
+  $stateProvider.state(groups);
+  $stateProvider.state(rides);
 
   $urlRouterProvider.otherwise('/');
 
 }]);
+
+highline.run(function($rootScope) {
+  $rootScope.loggedIn = true;
+});

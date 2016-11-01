@@ -1,69 +1,21 @@
-<style type="text/css">
-
-    #top-menu {
-        border: 0px solid green;
-        width: 100%;
-        padding-top: 10px;
-        background-color: #fff;
-    }
-
-    #top-menu-left {
-        float:left;
-        margin-left: 10px;
-    }
-
-    #top-menu-right {
-        float:right;
-        margin-top: 30px;
-        margin-right: 10px;
-    }
-
-    #top-menu-right ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    #top-menu-right ul li {
-        display: inline;
-        padding: 0 10px;
-    }
-
-    #top-menu-right ul li a {
-        color: #666;
-        font-size: 13px;
-        text-decoration: none;
-    }
-
-    #top-menu-right ul li a:hover {
-        color: #333;
-    }
-
-    #top-menu-bottom {
-        border-bottom: 1px solid #666;
-        clear: both;
-        width: 98%;
-        margin-bottom: 10px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-</style>
-
-<div id="top-menu">
+<div>
     <header>
-        <div id="top-menu-left">
-            <a href="/"><img src="assets/img/logo/highline.jpg" alt="Mountain Biking Group Riding"></a>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="pull-left">
+                    <a href="/">
+                        <img src="assets/img/logo/highline.jpg" alt="Mountain Biking Group Riding">
+                    </a>
+                </div>
+                <div class="pull-right" style="margin-top: 15px;">
+                    <authenticated-login ng-if="loggedIn"></authenticated-login>
+                </div>
+            </div>
         </div>
-        <div id="top-menu-right">
-            <nav>
-                <ul>
-                    <!-- TODO logged in as -->
-                    <li><a ui-sref="dashboard">Dashboard</a></li>
-                    <li><a ui-sref="login">Login</a></li>
-                </ul>
-            </nav>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="border-bottom"></div>
+            </div>
         </div>
-        <div id="top-menu-bottom"></div>
     </header>
 </div>

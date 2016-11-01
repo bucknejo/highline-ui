@@ -12,7 +12,7 @@ angular.module('highline-ui')
             url: 'service/user/1'
         };
         HighlineHttpService.serve(request).then(function(response) {
-            console.log(angular.toJson(response));
+            //console.log(angular.toJson(response));
             $scope.user = response.data;
         }).catch(function(error) {
             console.log(angular.toJson(error));

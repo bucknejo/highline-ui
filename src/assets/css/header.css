@@ -1,0 +1,26 @@
+.header-col {
+    border: 1px solid red;
+    height: 55px;
+    position: relative;
+}
+
+.header-menu-toggle {
+    border: 0;
+    vertical-align: bottom;
+}
+
+.header-menu-container {
+    position: fixed;
+    top: 33px;
+    border: 1px solid #999;
+    border-radius: 0;
+    position: absolute;
+    left: -135px;
+    z-index: 999 !important;
+}
+
+.header-menu-container li  {
+    color: #333;
+    font-size: .7em;
+    text-transform: uppercase;
+}
