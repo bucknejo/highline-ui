@@ -1,0 +1,16 @@
+#highline-account {}
+
+#highline-account .equipment-table {
+    color: #333;
+    font-size: .7em;
+}
+
+#highline-account .equipment-table thead {
+    font-weight: bold;
+}
+
+.account-equipment-edit {
+    color: #465a9b;
+    cursor: hand;
+    cursor: pointer;
+}

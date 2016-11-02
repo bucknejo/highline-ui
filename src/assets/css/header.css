@@ -24,3 +24,7 @@
     font-size: .7em;
     text-transform: uppercase;
 }
+
+.header-menu-container li:hover {
+    background-color: red !important;
+}

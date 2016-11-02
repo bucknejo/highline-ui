@@ -1,14 +1,16 @@
 'use strict';
 
-// Declare app level module which depends on views, and components
+// Declare app level module
 var highline = angular.module('highline-ui', ['ui.router', 'ui.bootstrap', 'ngMessages', 'ngResource']);
 
+// Declare app level contants
 highline.constant("HIGHLINE", {
   "SERVER": "http://localhost:8091/highline/",
   "PORT": "8091",
   "TEST": "test"
 });
 
+// Declare app level states
 highline.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
   var home = {
@@ -26,10 +28,10 @@ highline.config(['$stateProvider', '$urlRouterProvider', function($stateProvider
         templateUrl: 'app/components/login/login.tpl.html',
         controller: 'HighlineLoginController'
       },
-      'hlAlleyLeft@login': {
+      'left@login': {
         templateUrl: 'app/shared/templates/alley-left.tpl.html'
       },
-      'hlAlleyRight@login': {
+      'right@login': {
         templateUrl: 'app/shared/templates/alley-right.tpl.html'
       }
     }
@@ -43,38 +45,52 @@ highline.config(['$stateProvider', '$urlRouterProvider', function($stateProvider
         templateUrl: 'app/components/dashboard/dashboard.tpl.html',
         controller: 'HighlineDashboardController'
       },
-      'hlAlleyLeft@dashboard': {
+      'left@dashboard': {
         templateUrl: 'app/components/dashboard/templates/dashboard-alley-left.tpl.html'
       },
-      'hlActivity@dashboard': {
+      'activity@dashboard': {
         templateUrl: 'app/components/dashboard/templates/dashboard-activity.tpl.html',
         controller: 'HighlineDashboardActivityController'
       },
-      'hlAccount@dashboard': {
+      'account@dashboard': {
         templateUrl: 'app/components/dashboard/templates/dashboard-account.tpl.html',
         controller: 'HighlineDashboardAccountController'
       },
-      'hlData@dashboard': {
+      'data@dashboard': {
         templateUrl: 'app/components/dashboard/templates/dashboard-data.tpl.html',
         controller: 'HighlineDashboardDataController'
       },
-      'hlAlleyRight@dashboard': {
+      'right@dashboard': {
         templateUrl: 'app/components/dashboard/templates/dashboard-alley-right.tpl.html'
       }
+    },
+    onEnter: function() {
+
     }
   };
 
   var account = {
     name: 'account',
-    url: '/account',
-    templateUrl: 'app/components/account/account.tpl.html',
-    controller: 'HighlineAccountController'
+    url: '/account/:id',
+    views: {
+      '': {
+        templateUrl: 'app/components/account/account.tpl.html',
+        controller: 'HighlineAccountController'
+      },
+      'left@account': {
+        templateUrl: 'app/components/account/templates/account-alley-left.tpl.html'
+      },
+      'right@account': {
+        templateUrl: 'app/components/account/templates/account-alley-right.tpl.html'
+      }
+    }
+
   };
 
   var friends = {
     name: 'friends',
     url: '/friends',
-    templateUrl: 'app/components/friends/friends/tpl.html',
+    templateUrl: 'app/components/friends/friends.tpl.html',
     controller: 'HighlineFriendsController'
   };
 
@@ -92,6 +108,13 @@ highline.config(['$stateProvider', '$urlRouterProvider', function($stateProvider
     controller: 'HighlineRidesController'
   };
 
+  var logout = {
+    name: 'logout',
+    url: '/logout',
+    templateUrl: 'app/components/logout/logout.tpl.html',
+    controller: 'HighlineLogoutController'
+  };
+
   $stateProvider.state(home);
   $stateProvider.state(login);
   $stateProvider.state(dashboard);
@@ -99,11 +122,13 @@ highline.config(['$stateProvider', '$urlRouterProvider', function($stateProvider
   $stateProvider.state(friends);
   $stateProvider.state(groups);
   $stateProvider.state(rides);
+  $stateProvider.state(logout);
 
   $urlRouterProvider.otherwise('/');
 
 }]);
 
+// Declare app level root objects
 highline.run(function($rootScope) {
   $rootScope.loggedIn = true;
 });
