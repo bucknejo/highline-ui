@@ -96,9 +96,19 @@ highline.config(['$stateProvider', '$urlRouterProvider', function($stateProvider
 
   var groups = {
     name: 'groups',
-    url: '/groups',
-    templateUrl: 'app/components/groups/groups.tpl.html',
-    controller: 'HighlineGroupsController'
+    url: '/groups/:id',
+    views: {
+      '': {
+        templateUrl: 'app/components/groups/groups.tpl.html',
+        controller: 'HighlineGroupsController'
+      },
+      'left@groups': {
+        templateUrl: 'app/components/groups/templates/groups-alley-left.tpl.html'
+      },
+      'right@groups': {
+        templateUrl: 'app/components/groups/templates/groups-alley-right.tpl.html'
+      }
+    }
   };
 
   var rides = {
