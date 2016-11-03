@@ -135,8 +135,9 @@
                             <div class="segment-header">Actions</div>
                             <div class="row text-center" style="margin: 10px 0;">
                                 <button class="btn btn-primary" style="width: 50%; margin-top: 5px;">Change Password</button>
-                                <button class="btn btn-primary" style="width: 50%; margin-top: 5px;">Action One</button>
-                                <button class="btn btn-primary" style="width: 50%; margin-top: 5px;">Action Two</button>
+                                <button class="btn btn-primary" style="width: 50%; margin-top: 5px;">Find Friends</button>
+                                <button class="btn btn-primary" style="width: 50%; margin-top: 5px;">Manage Groups</button>
+                                <button class="btn btn-primary" style="width: 50%; margin-top: 5px;">Go Ride!</button>
                             </div>
                         </div>
                     </div>
@@ -167,6 +168,26 @@
                                 </tr>
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="segment-header">Preferences</div>
+                            <div class="segment-subheader">Access</div>
+                            <ul class="preferences-list">
+                                <li>Access Profile: {{user.preferences[0].access_profile}}</li>
+                                <li>Access Groups: {{user.preferences[0].access_groups}}</li>
+                                <li>Access Friends: {{user.preferences[0].access_friends}}</li>
+                                <li>Access Rides: {{user.preferences[0].access_rides}}</li>
+                                <li>Access Photos: {{user.preferences[0].access_photos}}</li>
+                            </ul>
+                            <div class="segment-subheader">Notifications</div>
+                            <ul class="preferences-list">
+                                <li>Notify Email Activity: {{user.preferences[0].notify_email_activity}}</li>
+                                <li>Notify Email Alerts: {{user.preferences[0].notify_email_alerts}}</li>
+                                <li>Notify SMS Activity: {{user.preferences[0].notify_sms_activity}}</li>
+                                <li>Notify SMS Alerts: {{user.preferences[0].notify_sms_alerts}}</li>
+                            </ul>
                         </div>
                     </div>
                 </div>

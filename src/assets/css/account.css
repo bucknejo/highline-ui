@@ -14,3 +14,10 @@
     cursor: hand;
     cursor: pointer;
 }
+
+#highline-account .preferences-list {
+    font-size: .8em;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}

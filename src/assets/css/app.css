@@ -126,6 +126,14 @@ table.member tr td.val {color: #333;}
   margin-bottom: 5px;
 }
 
+.segment-subheader {
+  font-size: .9em;
+  color: #465a9b;
+  border-bottom: 1px solid #527de8;
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+
 .border-bottom {
   border-bottom: 1px solid #999;
   margin: 0 0 10px 0;
