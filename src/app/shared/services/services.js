@@ -95,6 +95,7 @@ highlineServices.factory('Ride', ['$resource', 'HIGHLINE', function($resource, H
         retrieve: {method: 'GET', params: {
             user_id: '@user_id'
         }, isArray: true},
+
         update: {method: 'PUT'},
     });
 }]);

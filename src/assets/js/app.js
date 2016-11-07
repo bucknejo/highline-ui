@@ -113,9 +113,19 @@ highline.config(['$stateProvider', '$urlRouterProvider', function($stateProvider
 
   var rides = {
     name: 'rides',
-    url: '/rides',
-    templateUrl: 'app/components/rides/rides.tpl.html',
-    controller: 'HighlineRidesController'
+    url: '/rides/:id',
+    views: {
+      '': {
+        templateUrl: 'app/components/rides/rides.tpl.html',
+        controller: 'HighlineRidesController'
+      },
+      'left@rides': {
+        templateUrl: 'app/components/rides/templates/rides-alley-left.tpl.html'
+      },
+      'right@rides': {
+        templateUrl: 'app/components/rides/templates/rides-alley-right.tpl.html'
+      }
+    }
   };
 
   var logout = {
