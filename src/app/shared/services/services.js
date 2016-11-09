@@ -14,7 +14,7 @@ highlineServices.service('HighlineHttpService', ['$http', '$q', 'HIGHLINE', func
 
             $http(request).then(function success(response) {
                 deferred.resolve(response);
-            }, function error(error, status, headers, response) {
+            }, function (error, status, headers, response) {
                 deferred.reject({
                     message: error,
                     status: status,

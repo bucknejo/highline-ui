@@ -89,9 +89,19 @@ highline.config(['$stateProvider', '$urlRouterProvider', function($stateProvider
 
   var friends = {
     name: 'friends',
-    url: '/friends',
-    templateUrl: 'app/components/friends/friends.tpl.html',
-    controller: 'HighlineFriendsController'
+    url: '/friends/:id',
+    views: {
+      '': {
+        templateUrl: 'app/components/friends/friends.tpl.html',
+        controller: 'HighlineFriendsController'
+      },
+      'left@friends': {
+        templateUrl: 'app/components/friends/templates/friends-alley-left.tpl.html'
+      },
+      'right@friends': {
+        templateUrl: 'app/components/friends/templates/friends-alley-right.tpl.html'
+      }
+    }
   };
 
   var groups = {

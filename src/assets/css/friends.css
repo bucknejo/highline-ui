@@ -1,0 +1,29 @@
+#highline-friends {
+}
+
+
+#highline-friends .status-text {
+    font-size: 0.8em;
+    font-weight: bold;
+    color: #666;
+}
+
+#highline-friends .panel, .panel-open {
+    border: none;
+    box-shadow: none;
+}
+
+#highline-friends .friends-tabset {
+    font-size: 0.9em;
+    margin: 10px 0 10px 0;
+}
+
+#highline-friends .friends-accordion-heading {
+    font-size: 0.9em;
+}
+
+#highline-friends .friends-accordion-heading .subheading {
+    font-size: 0.7em;
+    font-style: italic;
+    color: #999;
+}

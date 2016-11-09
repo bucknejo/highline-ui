@@ -1,0 +1,145 @@
+<div id="highline-friends">
+    <div class="row">
+        <div class="col-md-2">
+            <div ui-view="left"></div>
+        </div>
+        <div class="col-md-8">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="segment-header">Friends</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <uib-tabset class="friends-tabset">
+                        <uib-tab index="0">
+
+                            <uib-tab-heading>Current</uib-tab-heading>
+
+                            <uib-accordion>
+                                <div uib-accordion-group ng-repeat="friend in friends">
+                                    <uib-accordion-heading style="border-bottom: 1px solid #999;">
+                                        <div class="row">
+                                            <div class="col-sm-3 pull-left">
+                                                <div class="friends-accordion-heading">
+                                                    {{friend.last_name}}, {{friend.first_name}}
+                                                    <span class="subheading">[Address Location]</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6"></div>
+                                            <div class="col-sm-3 pull-right">
+                                                <div class="status-text">
+                                                    <div style="text-align: center; width: 100%; border: 0px solid #333;">
+                                                        <i class="fa fa-envelope fa-2x" aria-hidden="true" ng-if="friend.status === 0" style="color: #465a9b;"></i>
+                                                        <i class="fa fa-user fa-2x" aria-hidden="true" ng-if="friend.status === 1" style="color: green;"></i>
+                                                        <i class="fa fa-warning fa-2x" aria-hidden="true" ng-if="friend.status === 2" style="color: orange"></i>
+                                                        <i class="fa fa-trash fa-2x" aria-hidden="true" ng-if="friend.status === 3" style="color: #990000;"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </uib-accordion-heading>
+
+                                    <div class="row">
+                                        <div class="col-sm-3 pull-left">
+
+                                            <table class="friend">
+                                                <tbody>
+                                                <tr>
+                                                    <td class="prop">Name:</td>
+                                                    <td class="val">{{friend.first_name}} {{friend.last_name}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="prop">Email:</td>
+                                                    <td class="val">{{friend.email}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="prop">Skill:</td>
+                                                    <td class="val">{{friend.skill}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="prop">Style:</td>
+                                                    <td class="val">{{friend.style}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="prop">Experience:</td>
+                                                    <td class="val">{{friend.experience}} year(s)</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                        <div class="col-sm-6"></div>
+                                        <div class="col-sm-3 pull-right">
+                                            <div style="text-align: center; width: 100%; border: 0px solid #333;">
+                                                <button type="button" class="btn btn-primary btn-sm" ng-click="" ng-disabled="" ng-show="isInvite(friend.status)">Un-invite</button>
+                                                <button type="button" class="btn btn-primary btn-sm" ng-click="" ng-disabled="" ng-show="isRemove(friend.status)">Remove</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div uib-accordion-group>
+                            </uib-accordion>
+
+                        </uib-tab>
+                        <uib-tab index="1">
+                            <uib-tab-heading>Available</uib-tab-heading>
+
+                            <uib-accordion>
+                                <div uib-accordion-group ng-repeat="member in members">
+
+                                    <uib-accordion-heading style="border-bottom: 1px solid #999;">
+                                        <div class="pull-left friends-accordion-heading">
+                                            {{member.last_name}}, {{member.first_name}}
+                                        </div>
+                                        <div class="pull-right status-text">
+                                            <em>{{ friendStatusText(member.status)}}</em>
+                                        </div>
+                                        <div style="clear: both;"></div>
+                                    </uib-accordion-heading>
+
+
+                                    <button type="button" class="pull-right btn btn-primary btn-lg" ng-click="invite(member.id)" ng-disabled="">Invite</button>
+
+                                    <table class="member">
+                                        <tbody>
+                                        <tr>
+                                            <td class="prop">Name:</td>
+                                            <td class="val">{{member.first_name}} {{member.last_name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="prop">Email:</td>
+                                            <td class="val">{{member.email}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="prop">Skill:</td>
+                                            <td class="val">{{member.skill}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="prop">Style:</td>
+                                            <td class="val">{{member.style}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="prop">Experience:</td>
+                                            <td class="val">{{member.experience}} year(s)</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+
+                                    <pre ng-show="false">{{ member | json}}</pre>
+
+                                </div uib-accordion-group>
+                            </uib-accordion>
+
+                        </uib-tab>
+                    </uib-tabset>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div ui-view="right"></div>
+        </div>
+    </div>
+</div>
