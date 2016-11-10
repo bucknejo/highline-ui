@@ -1,11 +1,10 @@
 'use strict';
 
-angular.module('highline-ui')
-    .controller('HighlineDashboardActivityController',
-        ['$scope', 'HIGHLINE', 'HighlineHttpService', 'uibDateParser', '$filter', function($scope, HIGHLINE, HighlineHttpService, uibDateParser, $filter) {
+angular.module('highline-ui').controller('HighlineDashboardActivityController', ['$scope', '$state', '$stateParams', 'HIGHLINE', 'HighlineHttpService', 'uibDateParser', '$filter', function($scope, $state, $stateParams, HIGHLINE, HighlineHttpService, uibDateParser, $filter) {
 
     $scope.activities = {};
     $scope.idSelected = 0;
+    $scope.user_id = $scope.$root.user_id;
 
     // get details for ride selected from list
     $scope.activityDetail = function(id) {
@@ -41,7 +40,7 @@ angular.module('highline-ui')
     function getActivityInfo() {
         var request = {
             method: 'GET',
-            url: 'service/activity/user/1'
+            url: 'service/activity/user/' + $scope.user_id
         };
         HighlineHttpService.serve(request).then(function(response) {
             //console.log(angular.toJson(response));

@@ -2,13 +2,17 @@
     <span uib-dropdown-toggle>
         <i class="fa fa-bars fa-2x" aria-hidden="true" style="color: #465a9b;"></i>
     </span>
-    <ul uib-dropdown-menu class="header-menu-container">
+    <ul uib-dropdown-menu class="header-menu-container" ng-if="authenticated">
         <li><a ui-sref="home">Home</a></li>
-        <li><a ui-sref="account({id: 1})">Account Info</a></li>
+        <li><a ui-sref="account">Account</a></li>
         <li><a ui-sref="dashboard">Dashboard</a></li>
-        <li><a ui-sref="rides({id: 1})">Rides</a></li>
-        <li><a ui-sref="groups({id: 1})">Groups</a></li>
-        <li><a ui-sref="friends({id: 1})">Friends</a></li>
-        <li><a ui-sref="logout">Sign Out</a></li>
+        <li><a ui-sref="friends">Friends</a></li>
+        <li><a ui-sref="groups">Groups</a></li>
+        <li><a ui-sref="rides">Rides</a></li>
+        <li><a ui-sref="logout">Log Out</a></li>
+    </ul>
+    <ul uib-dropdown-menu class="header-menu-container" ng-if="!authenticated">
+        <li><a ui-sref="home">Home</a></li>
+        <li><a ui-sref="login">Login</a></li>
     </ul>
 </div>

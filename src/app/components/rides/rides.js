@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('highline-ui').controller('HighlineRidesController', ['$scope', '$stateParams', '$http', '$log', '$filter', '$uibModal', 'HIGHLINE', 'Ride', 'Location', 'Address', 'Gruppe', function($scope, $stateParams, $http, $log, $filter, $uibModal, HIGHLINE, Ride, Location, Address, Gruppe) {
+angular.module('highline-ui').controller('HighlineRidesController', ['$scope', '$state', '$http', '$log', '$filter', '$uibModal', 'HIGHLINE', 'Ride', 'Location', 'Address', 'Gruppe', function($scope, $state, $http, $log, $filter, $uibModal, HIGHLINE, Ride, Location, Address, Gruppe) {
 
     $scope.debug = false;
     $scope.rides = Ride.query();
     $scope.ride = new Ride();
-    $scope.user_id = $stateParams.id;
+    $scope.user_id = $scope.$root.user_id;
     $scope.current = new Ride();
 
     $scope.rides = [];
@@ -69,7 +69,7 @@ angular.module('highline-ui').controller('HighlineRidesController', ['$scope', '
 
         var request = {
             method: 'GET',
-            url: HIGHLINE.SERVER + 'service/gruppe/user/' + $stateParams.id
+            url: HIGHLINE.SERVER + 'service/gruppe/user/' + $scope.user_id
         };
 
         $http(request).then(function success(response) {
@@ -182,7 +182,7 @@ angular.module('highline-ui').controller('HighlineRidesController', ['$scope', '
 
         var request = {
             method: 'GET',
-            url: HIGHLINE.SERVER + 'service/friend/' + $stateParams.id + '/ride/' + $scope.ride.id
+            url: HIGHLINE.SERVER + 'service/friend/' + $scope.user_id + '/ride/' + $scope.ride.id
         };
 
         if ($scope.ride.id) {

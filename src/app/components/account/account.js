@@ -7,11 +7,12 @@ angular.module('highline-ui').controller('HighlineAccountController', ['$scope',
     console.log('HIGHLINE.PORT: ' + angular.toJson(HIGHLINE.PORT));
 
     $scope.master = new User();
+    $scope.user_id = $scope.$root.user_id;
 
-    $log.info('UserDetailController: ' + $stateParams.id);
+    $log.info('UserDetailController: ' + $scope.user_id);
     $scope.test = 'this is a test.';
 
-    $scope.user = User.get({id: $stateParams.id}, function () {
+    $scope.user = User.get({id: $scope.user_id}, function () {
         $scope.master = $scope.user;
         $log.info('master set to first user get');
     });

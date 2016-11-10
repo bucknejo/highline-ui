@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('highline-ui').controller('HighlineLoginController', ['$scope', '$http', '$log', '$location', function($scope, $http, $log, $location) {
+angular.module('highline-ui').controller('HighlineLoginController', ['$scope', '$http', '$log', '$location', '$state', 'HIGHLINE', function($scope, $http, $log, $location, $state, HIGHLINE) {
 
     $scope.master = {
         email: '',
@@ -14,7 +14,7 @@ angular.module('highline-ui').controller('HighlineLoginController', ['$scope', '
 
     $scope.request = {
         method: 'POST',
-        url: '/highline/service/login/',
+        url: HIGHLINE.SERVER + 'service/login',
         data: $scope.user
     };
 
@@ -35,14 +35,16 @@ angular.module('highline-ui').controller('HighlineLoginController', ['$scope', '
 
         $http($scope.request).then(function success(response) {
             $log.info('success: ' + JSON.stringify(response));
+
             if (response.data.authenticated) {
-                $location.path('/users/detail/' + response.data.id);
+                $scope.$root.authenticated = true;
+                $scope.$root.user_id = response.data.id;
+                $state.go('dashboard', {id: response.data.id});
                 $scope.showResult = false;
             } else {
                 $scope.result = response.data;
                 $scope.showResult = true;
             }
-
 
         }, function error(response){
             $log.info('error: ' + JSON.stringify(response));
@@ -51,7 +53,7 @@ angular.module('highline-ui').controller('HighlineLoginController', ['$scope', '
 
     // register
     $scope.register = function() {
-        $location.path('/register');
+        $state.go('register');
     };
 
     // cancel

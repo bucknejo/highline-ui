@@ -1,8 +1,10 @@
 'use strict';
 
-angular.module('highline-ui').controller('HighlineFriendsController', ['$scope', '$stateParams', 'Friend', 'Member', '$log', 'HIGHLINE', function($scope, $stateParams, Friend, Member, $log, HIGHLINE) {
+angular.module('highline-ui').controller('HighlineFriendsController', ['$scope', '$state', 'Friend', 'Member', '$log', 'HIGHLINE', function($scope, $state, Friend, Member, $log, HIGHLINE) {
 
     var statii = ['Invitation Pending', 'Current Friend', 'Unknown Friend Status', 'Deleted Friend'];
+
+    $scope.user_id = $scope.$root.user_id;
 
     $scope.invite = function(id) {
         // TODO implement invite business logic
@@ -29,11 +31,11 @@ angular.module('highline-ui').controller('HighlineFriendsController', ['$scope',
         return statii[status];
     };
 
-    $scope.friends = Friend.query({id: $stateParams.id}, function() {
+    $scope.friends = Friend.query({id: $scope.user_id}, function() {
         $log.info('Friends: ' + JSON.stringify($scope.friends));
     });
 
-    $scope.members = Member.query({id: $stateParams.id}, function() {
+    $scope.members = Member.query({id: $scope.user_id}, function() {
         $log.info('Members: ' + JSON.stringify($scope.members));
     });
 

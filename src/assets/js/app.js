@@ -71,7 +71,7 @@ highline.config(['$stateProvider', '$urlRouterProvider', function($stateProvider
 
   var account = {
     name: 'account',
-    url: '/account/:id',
+    url: '/account',
     views: {
       '': {
         templateUrl: 'app/components/account/account.tpl.html',
@@ -89,7 +89,7 @@ highline.config(['$stateProvider', '$urlRouterProvider', function($stateProvider
 
   var friends = {
     name: 'friends',
-    url: '/friends/:id',
+    url: '/friends',
     views: {
       '': {
         templateUrl: 'app/components/friends/friends.tpl.html',
@@ -106,7 +106,7 @@ highline.config(['$stateProvider', '$urlRouterProvider', function($stateProvider
 
   var groups = {
     name: 'groups',
-    url: '/groups/:id',
+    url: '/groups',
     views: {
       '': {
         templateUrl: 'app/components/groups/groups.tpl.html',
@@ -123,7 +123,7 @@ highline.config(['$stateProvider', '$urlRouterProvider', function($stateProvider
 
   var rides = {
     name: 'rides',
-    url: '/rides/:id',
+    url: '/rides',
     views: {
       '': {
         templateUrl: 'app/components/rides/rides.tpl.html',
@@ -160,5 +160,6 @@ highline.config(['$stateProvider', '$urlRouterProvider', function($stateProvider
 
 // Declare app level root objects
 highline.run(function($rootScope) {
-  $rootScope.loggedIn = true;
+  $rootScope.authenticated = false;
+  $rootScope.user_id = -1;
 });
