@@ -7,10 +7,10 @@ angular.module('highline-ui').directive('authenticatedLogin', [function() {
             activity: '='
         },
         templateUrl: 'app/shared/directives/templates/authenticated-login.tpl.html',
-        controller: ['$scope', function($scope) {
+        controller: ['$scope', 'HighlineAuthentication', function($scope, HighlineAuthentication) {
 
-            $scope.$watch('$root.authenticated', function() {
-                $scope.authenticated = $scope.$root.authenticated;
+            $scope.$watch(function(){return HighlineAuthentication.isAuthenticated();}, function(newVal) {
+                $scope.authenticated = HighlineAuthentication.isAuthenticated();
             });
 
         }]

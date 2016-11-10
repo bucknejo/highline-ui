@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('highline-ui').controller('HighlineRidesController', ['$scope', '$state', '$http', '$log', '$filter', '$uibModal', 'HIGHLINE', 'Ride', 'Location', 'Address', 'Gruppe', function($scope, $state, $http, $log, $filter, $uibModal, HIGHLINE, Ride, Location, Address, Gruppe) {
+angular.module('highline-ui').controller('HighlineRidesController', ['$scope', '$state', '$http', '$log', '$filter', '$uibModal', 'HIGHLINE', 'Ride', 'Location', 'Address', 'Gruppe', 'HighlineAuthentication', function($scope, $state, $http, $log, $filter, $uibModal, HIGHLINE, Ride, Location, Address, Gruppe, HighlineAuthentication) {
 
     $scope.debug = false;
     $scope.rides = Ride.query();
     $scope.ride = new Ride();
-    $scope.user_id = $scope.$root.user_id;
+    $scope.user_id = HighlineAuthentication.getUserId();
     $scope.current = new Ride();
 
     $scope.rides = [];

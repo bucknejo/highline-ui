@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('highline-ui').controller('HighlineDashboardActivityController', ['$scope', '$state', '$stateParams', 'HIGHLINE', 'HighlineHttpService', 'uibDateParser', '$filter', function($scope, $state, $stateParams, HIGHLINE, HighlineHttpService, uibDateParser, $filter) {
+angular.module('highline-ui').controller('HighlineDashboardActivityController', ['$scope', '$state', '$stateParams', 'HIGHLINE', 'HighlineHttpService', 'HighlineAuthentication', 'uibDateParser', '$filter', function($scope, $state, $stateParams, HIGHLINE, HighlineHttpService, HighlineAuthentication, uibDateParser, $filter) {
 
     $scope.activities = {};
     $scope.idSelected = 0;
-    $scope.user_id = $scope.$root.user_id;
+    $scope.user_id = HighlineAuthentication.getUserId();
 
     // get details for ride selected from list
     $scope.activityDetail = function(id) {

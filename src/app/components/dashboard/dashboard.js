@@ -1,10 +1,8 @@
 'use strict';
 
-angular.module('highline-ui').controller('HighlineDashboardController', ['$scope', '$log', '$state', '$stateParams', function($scope, $log, $state, $stateParams) {
+angular.module('highline-ui').controller('HighlineDashboardController', ['$scope', '$log', '$state', 'HighlineAuthentication', function($scope, $log, $state, HighlineAuthentication) {
 
-    var user_id = $stateParams.id;
-
-    if (user_id < 0) {
+    if (!HighlineAuthentication.isAuthenticated()) {
         $state.go('login');
     }
 

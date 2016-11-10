@@ -1,9 +1,13 @@
 'use strict';
 
-angular.module('highline-ui').controller('HighlineDashboardAccountController', ['$scope', '$state', 'HIGHLINE', 'HighlineHttpService', function($scope, $state, HIGHLINE, HighlineHttpService) {
+angular.module('highline-ui').controller('HighlineDashboardAccountController', ['$scope', '$state', 'HIGHLINE', 'HighlineHttpService', 'HighlineAuthentication', function($scope, $state, HIGHLINE, HighlineHttpService, HighlineAuthentication) {
+
+    if (!HighlineAuthentication.isAuthenticated()) {
+        $state.go('login');
+    }
 
     $scope.user = {};
-    $scope.user_id = $scope.$root.user_id;
+    $scope.user_id = HighlineAuthentication.getUserId();
 
     function getUserInfo() {
         var request = {

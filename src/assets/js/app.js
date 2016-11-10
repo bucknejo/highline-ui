@@ -1,7 +1,7 @@
 'use strict';
 
 // Declare app level module
-var highline = angular.module('highline-ui', ['ui.router', 'ui.bootstrap', 'ngMessages', 'ngResource']);
+var highline = angular.module('highline-ui', ['ui.router', 'ui.bootstrap', 'ngMessages', 'ngResource', 'ngCookies']);
 
 // Declare app level contants
 highline.constant("HIGHLINE", {
@@ -160,6 +160,5 @@ highline.config(['$stateProvider', '$urlRouterProvider', function($stateProvider
 
 // Declare app level root objects
 highline.run(function($rootScope) {
-  $rootScope.authenticated = false;
-  $rootScope.user_id = -1;
+
 });

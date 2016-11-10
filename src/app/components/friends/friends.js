@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('highline-ui').controller('HighlineFriendsController', ['$scope', '$state', 'Friend', 'Member', '$log', 'HIGHLINE', function($scope, $state, Friend, Member, $log, HIGHLINE) {
+angular.module('highline-ui').controller('HighlineFriendsController', ['$scope', '$state', 'Friend', 'Member', '$log', 'HIGHLINE', 'HighlineAuthentication', function($scope, $state, Friend, Member, $log, HIGHLINE, HighlineAuthentication) {
 
     var statii = ['Invitation Pending', 'Current Friend', 'Unknown Friend Status', 'Deleted Friend'];
 
-    $scope.user_id = $scope.$root.user_id;
+    $scope.user_id = HighlineAuthentication.getUserId();
 
     $scope.invite = function(id) {
         // TODO implement invite business logic

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('highline-ui').controller('HighlineLoginController', ['$scope', '$http', '$log', '$location', '$state', 'HIGHLINE', function($scope, $http, $log, $location, $state, HIGHLINE) {
+angular.module('highline-ui').controller('HighlineLoginController', ['$scope', '$http', '$log', '$location', '$state', 'HIGHLINE', 'HighlineAuthentication', function($scope, $http, $log, $location, $state, HIGHLINE, HighlineAuthentication) {
 
     $scope.master = {
         email: '',
@@ -33,22 +33,35 @@ angular.module('highline-ui').controller('HighlineLoginController', ['$scope', '
 
         $log.info('login user: ' + JSON.stringify($scope.request));
 
-        $http($scope.request).then(function success(response) {
-            $log.info('success: ' + JSON.stringify(response));
+        var _authCookie = HighlineAuthentication.getAuthenticationCookie() || "";
 
-            if (response.data.authenticated) {
-                $scope.$root.authenticated = true;
-                $scope.$root.user_id = response.data.id;
-                $state.go('dashboard', {id: response.data.id});
-                $scope.showResult = false;
-            } else {
-                $scope.result = response.data;
-                $scope.showResult = true;
-            }
+        $log.info('authentication cookie: ' + angular.toJson(_authCookie));
 
-        }, function error(response){
-            $log.info('error: ' + JSON.stringify(response));
-        });
+        if (_authCookie && _authCookie.authenticated && _authCookie.user_id > 0) {
+            HighlineAuthentication.setAuthenticated(_authCookie.authenticated);
+            HighlineAuthentication.setUserId(_authCookie.user_id);
+            HighlineAuthentication.setAuthenticationCookie();
+            $state.go('dashboard');
+        } else {
+            $http($scope.request).then(function success(response) {
+                $log.info('success: ' + JSON.stringify(response));
+
+                if (response.data.authenticated) {
+                    HighlineAuthentication.setAuthenticated(true);
+                    HighlineAuthentication.setUserId(response.data.id);
+                    HighlineAuthentication.setAuthenticationCookie();
+                    $state.go('dashboard');
+                    $scope.showResult = false;
+                } else {
+                    $scope.result = response.data;
+                    $scope.showResult = true;
+                }
+
+            }, function error(response){
+                $log.info('error: ' + JSON.stringify(response));
+            });
+        }
+
     };
 
     // register

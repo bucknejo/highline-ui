@@ -1,10 +1,12 @@
 'use strict';
 
-angular.module('highline-ui').controller('HighlineLogoutController', ['$scope', '$http', '$log', '$location', '$state', function($scope, $http, $log, $location, $state) {
+angular.module('highline-ui').controller('HighlineLogoutController', ['$scope', '$http', '$log', '$location', '$state', 'HighlineAuthentication', function($scope, $http, $log, $location, $state, HighlineAuthentication) {
 
     $scope.logout = function() {
-        $scope.$root.authenticated = false;
-        $scope.$root.user_id = -1;
+        HighlineAuthentication.setAuthenticated(false);
+        HighlineAuthentication.setUserId(-1);
+        HighlineAuthentication.removeAuthenticationCookie();
+
         $state.go('login');
     };
 

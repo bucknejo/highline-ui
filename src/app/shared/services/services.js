@@ -29,6 +29,54 @@ highlineServices.service('HighlineHttpService', ['$http', '$q', 'HIGHLINE', func
 
 }]);
 
+highlineServices.factory('HighlineAuthentication', ['$cookies', function($cookies){
+
+    var authentication = {};
+
+    var _authenticated = false;
+    var _user_id = -1;
+
+    var _authCookie = {
+        authenticated: _authenticated,
+        user_id: _user_id
+    };
+
+    var _authCookieName = "highlineAuthenticationCookie";
+
+    authentication.setAuthenticated = function(authenticated) {
+        _authenticated = authenticated;
+    };
+
+    authentication.isAuthenticated = function() {
+        return _authenticated;
+    };
+
+    authentication.setUserId = function(user_id) {
+        _user_id = user_id;
+    };
+
+    authentication.getUserId = function() {
+        return _user_id;
+    };
+
+    authentication.setAuthenticationCookie = function() {
+        _authCookie.authenticated = authentication.isAuthenticated();
+        _authCookie.user_id = authentication.getUserId();
+        $cookies.put(_authCookieName, JSON.stringify(_authCookie));
+    };
+
+    authentication.getAuthenticationCookie = function() {
+        return $cookies.get(_authCookieName);
+    };
+
+    authentication.removeAuthenticationCookie = function() {
+        $cookies.remove(_authCookieName);
+    };
+
+    return authentication;
+
+}]);
+
 highlineServices.factory('Address', ['$resource', 'HIGHLINE', function($resource, HIGHLINE){
     return $resource(HIGHLINE.SERVER + 'service/address/:id/:location_id', {}, {
         query: {method: 'GET', params: {}, isArray: true},

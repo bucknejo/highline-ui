@@ -1,13 +1,17 @@
 'use strict';
 
-angular.module('highline-ui').controller('HighlineAccountController', ['$scope', '$log', '$stateParams', 'HIGHLINE', 'HighlineHttpService', 'User', function ($scope, $log, $stateParams, HIGHLINE, HighlineHttpService, User) {
+angular.module('highline-ui').controller('HighlineAccountController', ['$scope', '$log', '$state', 'HIGHLINE', 'HighlineHttpService', 'HighlineAuthentication', 'User', function ($scope, $log, $state, HIGHLINE, HighlineHttpService, HighlineAuthentication, User) {
 
     console.log('in HighlineAccountController');
     console.log('HIGHLINE.SERVER: ' + angular.toJson(HIGHLINE.SERVER));
     console.log('HIGHLINE.PORT: ' + angular.toJson(HIGHLINE.PORT));
 
+    if (!HighlineAuthentication.isAuthenticated()) {
+        $state.go('login');
+    }
+
     $scope.master = new User();
-    $scope.user_id = $scope.$root.user_id;
+    $scope.user_id = HighlineAuthentication.getUserId();
 
     $log.info('UserDetailController: ' + $scope.user_id);
     $scope.test = 'this is a test.';

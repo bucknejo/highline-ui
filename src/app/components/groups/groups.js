@@ -1,12 +1,12 @@
 'use strict';
 
-angular.module('highline-ui').controller('HighlineGroupsController', ['$scope', '$state', '$http', 'HIGHLINE', 'Gruppe', 'GruppeMember', '$log', '$filter', '$uibModal', function($scope, $state, $http, HIGHLINE, Gruppe, GruppeMember, $log, $filter, $uibModal) {
+angular.module('highline-ui').controller('HighlineGroupsController', ['$scope', '$state', '$http', 'HIGHLINE', 'Gruppe', 'GruppeMember', '$log', '$filter', '$uibModal', 'HighlineAuthentication', function($scope, $state, $http, HIGHLINE, Gruppe, GruppeMember, $log, $filter, $uibModal, HighlineAuthentication) {
 
     // initialization
     $scope.debug = true;
     $scope.gruppe = new Gruppe();
     $scope.friends = [];
-    $scope.user_id = $scope.$root.user_id;
+    $scope.user_id = HighlineAuthentication.getUserId();
 
     // drop down list items
     $scope.types = [{

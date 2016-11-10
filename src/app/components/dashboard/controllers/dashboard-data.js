@@ -1,12 +1,12 @@
 'use strict';
 
-angular.module('highline-ui').controller('HighlineDashboardDataController', ['$scope', '$state', '$stateParams', 'HIGHLINE', 'HighlineHttpService', function($scope, $state, $stateParams, HIGHLINE, HighlineHttpService) {
+angular.module('highline-ui').controller('HighlineDashboardDataController', ['$scope', '$state', '$stateParams', 'HIGHLINE', 'HighlineHttpService', 'HighlineAuthentication', function($scope, $state, $stateParams, HIGHLINE, HighlineHttpService, HighlineAuthentication) {
 
     $scope.rides = {};
     $scope.gruppes = {};
     $scope.friends = {};
     $scope.idSelected = 0;
-    $scope.user_id = $scope.$root.user_id;
+    $scope.user_id = HighlineAuthentication.getUserId();
 
     // get details for ride selected from list
     $scope.rideDetail = function(id) {
