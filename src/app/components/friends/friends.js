@@ -39,5 +39,36 @@ angular.module('highline-ui').controller('HighlineFriendsController', ['$scope',
         $log.info('Members: ' + JSON.stringify($scope.members));
     });
 
+    $scope.showAddress = function(friend) {
+        var display = '[Location not available]';
+        if (friend && angular.isArray(friend.addresses) && friend.addresses.length > 0) {
+            var address = friend.addresses[0];
+            if (angular.isArray(friend.preferences) && friend.preferences.length > 0) {
+                var preferences = friend.preferences[0];
+                if (preferences.address_show_all) {
+                     return address.city + ", " + address.state + " " + address.zip;
+                }
+                if (preferences.address_show_city && preferences.address_show_state) {
+                    return address.city + ", " + address.state;
+                }
+                if (preferences.address_show_state) {
+                    return address.state;
+                }
+                if (preferences.address_show_zip) {
+                    return address.zip;
+                }
+            }
+        }
+        return display;
+    };
+
+    $scope.avatarSource = function(friend)  {
+        if (friend.avatar && friend.avatar.length() > 0) {
+            return HIGHLINE.SERVER + friend.avatar;
+        } else {
+            return 'assets/img/common/double-black.jpg';
+        }
+    };
+
 
 }]);

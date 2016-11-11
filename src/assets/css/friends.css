@@ -27,3 +27,14 @@
     font-style: italic;
     color: #999;
 }
+
+#highline-friends .avatar-container {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#highline-friends .avatar {
+    max-height: 100px;
+    max-width: 100px;
+}

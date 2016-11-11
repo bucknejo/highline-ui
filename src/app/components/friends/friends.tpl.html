@@ -21,14 +21,13 @@
                                 <div uib-accordion-group ng-repeat="friend in friends">
                                     <uib-accordion-heading style="border-bottom: 1px solid #999;">
                                         <div class="row">
-                                            <div class="col-sm-3 pull-left">
+                                            <div class="col-sm-10 pull-left">
                                                 <div class="friends-accordion-heading">
                                                     {{friend.last_name}}, {{friend.first_name}}
-                                                    <span class="subheading">[Address Location]</span>
+                                                    <span class="subheading">{{ showAddress(friend);}}</span>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-6"></div>
-                                            <div class="col-sm-3 pull-right">
+                                            <div class="col-sm-2 pull-right">
                                                 <div class="status-text">
                                                     <div style="text-align: center; width: 100%; border: 0px solid #333;">
                                                         <i class="fa fa-envelope fa-2x" aria-hidden="true" ng-if="friend.status === 0" style="color: #465a9b;"></i>
@@ -42,7 +41,10 @@
                                     </uib-accordion-heading>
 
                                     <div class="row">
-                                        <div class="col-sm-3 pull-left">
+                                        <div class="col-sm-2 avatar-container">
+                                            <img ng-src="{{avatarSource(friend)}}" alt="Highline Avatar" class="avatar" />
+                                        </div>
+                                        <div class="col-sm-4 pull-left">
 
                                             <table class="friend">
                                                 <tbody>
@@ -70,8 +72,8 @@
                                             </table>
 
                                         </div>
-                                        <div class="col-sm-6"></div>
-                                        <div class="col-sm-3 pull-right">
+                                        <div class="col-sm-4"></div>
+                                        <div class="col-sm-2 pull-right">
                                             <div style="text-align: center; width: 100%; border: 0px solid #333;">
                                                 <button type="button" class="btn btn-primary btn-sm" ng-click="" ng-disabled="" ng-show="isInvite(friend.status)">Un-invite</button>
                                                 <button type="button" class="btn btn-primary btn-sm" ng-click="" ng-disabled="" ng-show="isRemove(friend.status)">Remove</button>
