@@ -14,6 +14,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
+
                             <form name="hlFormUser">
 
                                 <div class="form-group"
@@ -132,13 +133,35 @@
                 <div class="col-md-6">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="segment-header">Actions</div>
-                            <div class="row text-center" style="margin: 10px 0;">
-                                <button class="btn btn-primary" style="width: 50%; margin-top: 5px;">Change Password</button>
-                                <button class="btn btn-primary" style="width: 50%; margin-top: 5px;">Find Friends</button>
-                                <button class="btn btn-primary" style="width: 50%; margin-top: 5px;">Manage Groups</button>
-                                <button class="btn btn-primary" style="width: 50%; margin-top: 5px;">Go Ride!</button>
-                            </div>
+                            <div class="segment-header">Addresses</div>
+
+                            <table class="table table-striped table-hover equipment-table">
+                                <thead>
+                                <tr>
+                                    <td>Rank</td>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Street</td>
+                                    <td>City</td>
+                                    <td>Zip</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="address in user.addresses">
+                                    <td>{{address.rank}}</td>
+                                    <td>{{address.name}}</td>
+                                    <td>{{address.type}}</td>
+                                    <td>{{address.street}}</td>
+                                    <td>{{address.city}}</td>
+                                    <td>{{address.zip}}</td>
+                                    <td>
+                                        <i class="fa fa-pencil" aria-hidden="true" class="account-address-edit" style="cursor: hand; cursor: pointer; color: #465a9b;" ng-click="editAddress(address.id)"></i>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
                         </div>
                     </div>
                     <div class="row">
@@ -208,7 +231,7 @@
 
     <hr/>
 
-    <pre>{{user | json}}</pre>
+    <pre ng-show="debug">{{user | json}}</pre>
 
 </div>
 

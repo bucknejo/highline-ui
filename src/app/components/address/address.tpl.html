@@ -1,0 +1,107 @@
+<div id="highline-address">
+    <div class="row">
+        <div class="col-md-2">
+            <div ui-view="left"></div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="segment-header">Address</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+
+                    <form name="hlFormAddress">
+
+                        <div class="form-group"
+                             ng-class="{'has-error': hlFormAddress.name.$touched && hlFormAddress.name.$invalid}">
+                            <label class="" for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Name" class="form-control"
+                                   ng-model="address.name" required>
+                            <div ng-messages="hlFormAddress.name.$error" class="help-block">
+                                <div ng-message="required">You must enter a name.</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group"
+                             ng-class="{'has-error': hlFormAddress.description.$touched && hlFormAddress.description.$invalid}">
+                            <label class="" for="description">Description</label>
+                            <input type="text" id="description" name="description" placeholder="Description" class="form-control"
+                                   ng-model="address.description" required>
+                            <div ng-messages="hlFormAddress.description.$error" class="help-block">
+                                <div ng-message="required">You must enter a description.</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-class="{'has-error': hlFormAddress.street.$touched && hlFormAddress.street.$invalid}">
+                            <label class="" for="street">Street</label>
+                            <input type="text" id="street" name="street" placeholder="Street" class="form-control"
+                                   ng-model="address.street" required>
+                            <div ng-messages="hlFormAddress.street.$error" class="help-block">
+                                <div ng-message="required">You must enter an street address.</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-class="{'has-error': hlFormAddress.city.$touched && hlFormAddress.city.$invalid}">
+                            <label class="" for="city">City</label>
+                            <input type="text" id="city" name="city" placeholder="City" class="form-control"
+                                   ng-model="address.city" required>
+                            <div ng-messages="hlFormAddress.city.$error" class="help-block">
+                                <div ng-message="required">Please enter your current city.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" ng-class="{'has-error': hlFormAddress.state.$touched && hlFormAddress.state.$invalid}">
+                            <label class="" for="state">State</label>
+                            <select id="state" name="state" placeholder="State" class="form-control" ng-model="address.state"
+                                    ng-options="state.value as state.text for state in states" required>
+                                <option value="" disabled selected>[Please Choose]</option>
+                            </select>
+                            <div ng-messages="hlFormAddress.state.$error" class="help-block">
+                                <div ng-message="required">Please provide your current state.</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-class="{'has-error': hlFormAddress.zip.$touched && hlFormAddress.zip.$invalid}">
+                            <label class="" for="zip">ZIP</label>
+                            <input type="text" id="zip" name="zip" placeholder="ZIP" class="form-control"
+                                   ng-model="address.zip" required>
+                            <div ng-messages="hlFormAddress.zip.$error" class="help-block">
+                                <div ng-message="required">Please enter your current ZIP.</div>
+                            </div>
+                        </div>
+
+                    </form>
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="center-block">
+
+                        <button type="button" class="btn btn-primary" ng-click="addAddress()"
+                                ng-disabled="addable(hlFormAddress.$invalid)">Add
+                        </button>
+                        <button type="button" class="btn btn-primary" ng-click="updateAddress()"
+                                ng-disabled="updatable(hlFormAddress.$invalid)">Update
+                        </button>
+                        <button type="button" class="btn btn-primary" ng-click="deleteAddress(hlFormAddress)" ng-disabled="deletable()">
+                            Delete
+                        </button>
+                        <button type="button" class="btn btn-primary" ng-click="clear(hlFormAddress)">Clear</button>
+                        <button type="button" class="btn btn-primary" ng-click="reset(hlFormAddress)" ng-disabled="deletable()">Reset
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+            <div style="margin-bottom: 20px;">
+
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div ui-view="left"></div>
+        </div>
+    </div>
+</div>

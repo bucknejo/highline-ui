@@ -10,6 +10,7 @@ angular.module('highline-ui').controller('HighlineAccountController', ['$scope',
         $state.go('login');
     }
 
+    $scope.debug = false;
     $scope.master = new User();
     $scope.user_id = HighlineAuthentication.getUserId();
 
@@ -71,6 +72,11 @@ angular.module('highline-ui').controller('HighlineAccountController', ['$scope',
 
     $scope.editEquipment = function(id) {
         $log.info('edit equipment id: ' + id);
+    };
+
+    $scope.editAddress = function(id) {
+        $log.info('edit address id: ' + id);
+        $state.go('address', {"id": id});
     };
 
     // select lists

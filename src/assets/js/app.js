@@ -13,26 +13,37 @@ highline.constant("HIGHLINE", {
 // Declare app level states
 highline.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
-  var home = {
-    name: 'home',
-    url: '/',
-    templateUrl: 'app/components/home/home.tpl.html',
-    controller: 'HighlineHomeController'
-  };
-
-  var login = {
-    name: 'login',
-    url: '/login',
+  var account = {
+    name: 'account',
+    url: '/account',
     views: {
       '': {
-        templateUrl: 'app/components/login/login.tpl.html',
-        controller: 'HighlineLoginController'
+        templateUrl: 'app/components/account/account.tpl.html',
+        controller: 'HighlineAccountController'
       },
-      'left@login': {
-        templateUrl: 'app/shared/templates/alley-left.tpl.html'
+      'left@account': {
+        templateUrl: 'app/components/account/templates/account-alley-left.tpl.html'
       },
-      'right@login': {
-        templateUrl: 'app/shared/templates/alley-right.tpl.html'
+      'right@account': {
+        templateUrl: 'app/components/account/templates/account-alley-right.tpl.html'
+      }
+    }
+
+  };
+
+  var address = {
+    name: 'address',
+    url: '/address/:id',
+    views: {
+      '': {
+        templateUrl: 'app/components/address/address.tpl.html',
+        controller: 'HighlineAddressController'
+      },
+      'left@address': {
+        templateUrl: 'app/components/address/templates/address-alley-left.tpl.html'
+      },
+      'right@address': {
+        templateUrl: 'app/components/address/templates/address-alley-right.tpl.html'
       }
     }
   };
@@ -69,19 +80,19 @@ highline.config(['$stateProvider', '$urlRouterProvider', function($stateProvider
     }
   };
 
-  var account = {
-    name: 'account',
-    url: '/account',
+  var equipment =  {
+    name: 'equipment',
+    url: '/equipment/:id',
     views: {
       '': {
-        templateUrl: 'app/components/account/account.tpl.html',
-        controller: 'HighlineAccountController'
+        templateUrl: 'app/components/equipment/equipment.tpl.html',
+        contorller: 'HighlineEquipmentController'
       },
-      'left@account': {
-        templateUrl: 'app/components/account/templates/account-alley-left.tpl.html'
+      'left@equipment': {
+        templateUrl: 'app/components/equipment/templates/equipment-alley-left.tpl.html'
       },
-      'right@account': {
-        templateUrl: 'app/components/account/templates/account-alley-right.tpl.html'
+      'right@equipment': {
+        templateUrl: 'app/components/equipment/templates/equipment-alley-right.tpl.html'
       }
     }
 
@@ -121,6 +132,37 @@ highline.config(['$stateProvider', '$urlRouterProvider', function($stateProvider
     }
   };
 
+  var home = {
+    name: 'home',
+    url: '/',
+    templateUrl: 'app/components/home/home.tpl.html',
+    controller: 'HighlineHomeController'
+  };
+
+  var login = {
+    name: 'login',
+    url: '/login',
+    views: {
+      '': {
+        templateUrl: 'app/components/login/login.tpl.html',
+        controller: 'HighlineLoginController'
+      },
+      'left@login': {
+        templateUrl: 'app/shared/templates/alley-left.tpl.html'
+      },
+      'right@login': {
+        templateUrl: 'app/shared/templates/alley-right.tpl.html'
+      }
+    }
+  };
+
+  var logout = {
+    name: 'logout',
+    url: '/logout',
+    templateUrl: 'app/components/logout/logout.tpl.html',
+    controller: 'HighlineLogoutController'
+  };
+
   var rides = {
     name: 'rides',
     url: '/rides',
@@ -138,21 +180,15 @@ highline.config(['$stateProvider', '$urlRouterProvider', function($stateProvider
     }
   };
 
-  var logout = {
-    name: 'logout',
-    url: '/logout',
-    templateUrl: 'app/components/logout/logout.tpl.html',
-    controller: 'HighlineLogoutController'
-  };
-
-  $stateProvider.state(home);
-  $stateProvider.state(login);
-  $stateProvider.state(dashboard);
   $stateProvider.state(account);
+  $stateProvider.state(address);
+  $stateProvider.state(dashboard);
   $stateProvider.state(friends);
   $stateProvider.state(groups);
-  $stateProvider.state(rides);
+  $stateProvider.state(home);
+  $stateProvider.state(login);
   $stateProvider.state(logout);
+  $stateProvider.state(rides);
 
   $urlRouterProvider.otherwise('/');
 
