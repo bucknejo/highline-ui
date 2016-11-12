@@ -86,7 +86,7 @@ highline.config(['$stateProvider', '$urlRouterProvider', function($stateProvider
     views: {
       '': {
         templateUrl: 'app/components/equipment/equipment.tpl.html',
-        contorller: 'HighlineEquipmentController'
+        controller: 'HighlineEquipmentController'
       },
       'left@equipment': {
         templateUrl: 'app/components/equipment/templates/equipment-alley-left.tpl.html'
@@ -183,6 +183,7 @@ highline.config(['$stateProvider', '$urlRouterProvider', function($stateProvider
   $stateProvider.state(account);
   $stateProvider.state(address);
   $stateProvider.state(dashboard);
+  $stateProvider.state(equipment);
   $stateProvider.state(friends);
   $stateProvider.state(groups);
   $stateProvider.state(home);

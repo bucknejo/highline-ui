@@ -34,8 +34,15 @@ highlineServices.factory('HighlineApplicationConstants', [function(){
     var constants = {};
 
     constants.OPTIONS = {};
+    constants.OPTIONS.EQUIPMENT = {};
+
     constants.OPTIONS.STATE = [];
     constants.OPTIONS.COUNTRY = [];
+
+    constants.OPTIONS.EQUIPMENT.TYPES = [];
+    constants.OPTIONS.EQUIPMENT.STYLES = [];
+    constants.OPTIONS.EQUIPMENT.MAKES = [];
+    constants.OPTIONS.EQUIPMENT.YEARS = [];
 
     constants.OPTIONS.STATE.push({value: 'AL', text: 'Alabama', selected: false});
     constants.OPTIONS.STATE.push({value: 'AK', text: 'Alaska', selected: false});
@@ -88,6 +95,27 @@ highlineServices.factory('HighlineApplicationConstants', [function(){
     constants.OPTIONS.STATE.push({value: 'WV', text: 'West Virginia', selected: false});
     constants.OPTIONS.STATE.push({value: 'WI', text: 'Wisconsin', selected: false});
     constants.OPTIONS.STATE.push({value: 'WY', text: 'Wyoming', selected: false});
+
+    constants.OPTIONS.EQUIPMENT.TYPES.push({value: 'BIKE', text: 'Bike', selected: false});
+    constants.OPTIONS.EQUIPMENT.TYPES.push({value: 'SKI', text: 'Ski', selected: false});
+
+    constants.OPTIONS.EQUIPMENT.STYLES.push({value: 'HT', text: 'Hard Tail', selected: false});
+    constants.OPTIONS.EQUIPMENT.STYLES.push({value: 'FS', text: 'Full Suspension', selected: false});
+
+    constants.OPTIONS.EQUIPMENT.MAKES.push({value: 'Cannondale', text: 'Cannondale', selected: false});
+    constants.OPTIONS.EQUIPMENT.MAKES.push({value: 'Specialized', text: 'Specialized', selected: false});
+    constants.OPTIONS.EQUIPMENT.MAKES.push({value: 'Santa Cruz', text: 'Santa Cruz', selected: false});
+    constants.OPTIONS.EQUIPMENT.MAKES.push({value: 'Pivot', text: 'Pivot', selected: false});
+    constants.OPTIONS.EQUIPMENT.MAKES.push({value: 'Trek', text: 'Trek', selected: false});
+    constants.OPTIONS.EQUIPMENT.MAKES.push({value: 'Giant', text: 'Giant', selected: false});
+    constants.OPTIONS.EQUIPMENT.MAKES.push({value: 'Yeti', text: 'Yeti', selected: false});
+
+    var year = 1980;
+    for (var i=0; i < 50; i++) {
+        var option = {value: year.toString(), text: year.toString(), selected: false};
+        constants.OPTIONS.EQUIPMENT.YEARS.push(option);
+        year++;
+    }
 
     return constants;
 

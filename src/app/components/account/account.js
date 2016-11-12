@@ -72,6 +72,7 @@ angular.module('highline-ui').controller('HighlineAccountController', ['$scope',
 
     $scope.editEquipment = function(id) {
         $log.info('edit equipment id: ' + id);
+        $state.go('equipment', {"id": id});
     };
 
     $scope.editAddress = function(id) {
