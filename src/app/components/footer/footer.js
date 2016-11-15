@@ -2,8 +2,6 @@
 
 function HighlineFooterController() {
 
-    console.log('in HighlineFooterController');
-
 }
 
 angular.module('highline-ui').component('highlineFooter', {

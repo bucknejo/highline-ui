@@ -64,7 +64,7 @@ angular.module('highline-ui').controller('HighlineFriendsController', ['$scope',
 
     $scope.avatarSource = function(friend)  {
         if (friend.avatar && friend.avatar.length() > 0) {
-            return HIGHLINE.SERVER + friend.avatar;
+            return HIGHLINE.SERVER.RESOURCE + friend.avatar;
         } else {
             return 'assets/img/common/double-black.jpg';
         }

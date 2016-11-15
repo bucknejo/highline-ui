@@ -34,7 +34,7 @@ angular.module('highline-ui').controller('HighlineGroupsController', ['$scope', 
 
         var request = {
             method: 'GET',
-            url: HIGHLINE.SERVER + 'service/gruppe/user/' + $scope.user_id
+            url: HIGHLINE.SERVER.RESOURCE + 'service/gruppe/user/' + $scope.user_id
         };
 
         $http(request).then(function success(response) {
@@ -49,7 +49,7 @@ angular.module('highline-ui').controller('HighlineGroupsController', ['$scope', 
 
         var request = {
             method: 'GET',
-            url: HIGHLINE.SERVER + 'service/friend/' + $scope.user_id + '/gruppe/' + $scope.gruppe.id
+            url: HIGHLINE.SERVER.RESOURCE + 'service/friend/' + $scope.user_id + '/gruppe/' + $scope.gruppe.id
         };
 
         if ($scope.gruppe.id) {

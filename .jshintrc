@@ -21,5 +21,8 @@
     "browser": false,
     "element": false,
     "by": false
+
+    // Plupload
+    "plupload": false
   }
 }

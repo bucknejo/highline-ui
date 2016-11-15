@@ -4,7 +4,7 @@ var highlineServices = angular.module('highline-ui');
 
 highlineServices.service('HighlineHttpService', ['$http', '$q', 'HIGHLINE', function($http, $q, HIGHLINE) {
 
-    var server = HIGHLINE.SERVER;
+    var server = HIGHLINE.SERVER.RESOURCE;
 
     return  {
         serve: function(request) {
@@ -170,7 +170,7 @@ highlineServices.factory('HighlineAuthentication', ['$cookies', function($cookie
 }]);
 
 highlineServices.factory('Address', ['$resource', 'HIGHLINE', function($resource, HIGHLINE){
-    return $resource(HIGHLINE.SERVER + 'service/address/:id/:location_id', {}, {
+    return $resource(HIGHLINE.SERVER.RESOURCE + 'service/address/:id/:location_id', {}, {
         query: {method: 'GET', params: {}, isArray: true},
         update: {method: 'PUT'},
         retrieve: {method: 'GET', params: {
@@ -179,36 +179,36 @@ highlineServices.factory('Address', ['$resource', 'HIGHLINE', function($resource
         getByUser: {method: 'GET', params: {
             id: '@id',
             user_id: '@user_id'
-        }, url: HIGHLINE.SERVER + 'service/address/id/:id/user/:user_id'}
+        }, url: HIGHLINE.SERVER.RESOURCE + 'service/address/id/:id/user/:user_id'}
     });
 }]);
 
 highlineServices.factory('Equipment', ['$resource', 'HIGHLINE', function($resource, HIGHLINE){
-    return $resource(HIGHLINE.SERVER + 'service/equipment', {}, {
+    return $resource(HIGHLINE.SERVER.RESOURCE + 'service/equipment', {}, {
         query: {method: 'GET', params: {}, isArray: true},
         update: {method: 'PUT'},
         getByUser: {method: 'GET', params: {
             id: '@id',
             user_id: '@user_id'
-        }, url: HIGHLINE.SERVER + 'service/equipment/id/:id/user/:user_id'}
+        }, url: HIGHLINE.SERVER.RESOURCE + 'service/equipment/id/:id/user/:user_id'}
     });
 }]);
 
 highlineServices.factory('Friend', ['$resource', 'HIGHLINE', function($resource, HIGHLINE){
-    return $resource(HIGHLINE.SERVER + 'service/friend/:id', {}, {
+    return $resource(HIGHLINE.SERVER.RESOURCE + 'service/friend/:id', {}, {
         query: {method: 'GET', params: {}, isArray: true}
     });
 }]);
 
 highlineServices.factory('Gruppe', ['$resource', 'HIGHLINE', function($resource, HIGHLINE){
-    return $resource(HIGHLINE.SERVER + 'service/gruppe/:id', {id: '@id'}, {
+    return $resource(HIGHLINE.SERVER.RESOURCE + 'service/gruppe/:id', {id: '@id'}, {
         query: {method: 'GET', params: {}, isArray: true},
         update: {method: 'PUT'}
     });
 }]);
 
 highlineServices.factory('GruppeMember', ['$resource', 'HIGHLINE', function($resource, HIGHLINE){
-    return $resource(HIGHLINE.SERVER + 'service/gruppemember/:id/:gruppe_id/:user_id', {id: '@id'}, {
+    return $resource(HIGHLINE.SERVER.RESOURCE + 'service/gruppemember/:id/:gruppe_id/:user_id', {id: '@id'}, {
         query: {method: 'GET', params: {}, isArray: true},
         retrieve: {method: 'GET', params: {
             gruppe_id:'@gruppe_id',
@@ -224,7 +224,7 @@ highlineServices.factory('GruppeMember', ['$resource', 'HIGHLINE', function($res
 }]);
 
 highlineServices.factory('Location', ['$resource', 'HIGHLINE', function($resource, HIGHLINE){
-    return $resource(HIGHLINE.SERVER + 'service/location/:id/:state', {id: '@id'}, {
+    return $resource(HIGHLINE.SERVER.RESOURCE + 'service/location/:id/:state', {id: '@id'}, {
         query: {method: 'GET', params: {}, isArray: true},
         retrieve: {method: 'GET', params: {
             state: '@state'
@@ -233,19 +233,19 @@ highlineServices.factory('Location', ['$resource', 'HIGHLINE', function($resourc
 }]);
 
 highlineServices.factory('Member', ['$resource', 'HIGHLINE', function($resource, HIGHLINE){
-    return $resource(HIGHLINE.SERVER + 'service/member/:id', {}, {
+    return $resource(HIGHLINE.SERVER.RESOURCE + 'service/member/:id', {}, {
         query: {method: 'GET', params: {}, isArray: true}
     });
 }]);
 
 highlineServices.factory('Photo', ['$resource', 'HIGHLINE', function($resource, HIGHLINE){
-    return $resource(HIGHLINE.SERVER + 'service/photo/get', {}, {
+    return $resource(HIGHLINE.SERVER.RESOURCE + 'service/photo/get', {}, {
         query: {method: 'GET', params: {}, isArray: true}
     });
 }]);
 
 highlineServices.factory('Ride', ['$resource', 'HIGHLINE', function($resource, HIGHLINE){
-    return $resource(HIGHLINE.SERVER + 'service/ride/:id/:user_id', {id: '@id'}, {
+    return $resource(HIGHLINE.SERVER.RESOURCE + 'service/ride/:id/:user_id', {id: '@id'}, {
         query: {method: 'GET', params: {}, isArray: true},
         retrieve: {method: 'GET', params: {
             user_id: '@user_id'
@@ -256,7 +256,7 @@ highlineServices.factory('Ride', ['$resource', 'HIGHLINE', function($resource, H
 }]);
 
 highlineServices.factory('User', ['$resource', 'HIGHLINE', function($resource, HIGHLINE){
-    return $resource(HIGHLINE.SERVER  + 'service/user/:id', {id: '@id'}, {
+    return $resource(HIGHLINE.SERVER.RESOURCE  + 'service/user/:id', {id: '@id'}, {
         query: {method: 'GET', params: {}, isArray: true},
         update: {method: 'PUT'}
     });

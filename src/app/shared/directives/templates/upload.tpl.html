@@ -1,0 +1,66 @@
+<div class="highline-upload">
+
+    <!-- main button to enter directive -->
+    <button class="btn btn-primary highline-upload-control-entry" ng-click="uploadOpen()">Upload</button>
+
+    <!-- container element to hold control elements (position fixed in center of screen -->
+    <div class="container highline-upload-control" ng-show="showUploadControls">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="heading">Upload (10 file max)
+                    <span class="highline-upload-close pull-right">
+                        <i class="fa fa-times" aria-hidden="true" ng-click="uploadClose()"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- container element to hold images  -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="highline-upload-uploads">
+                    <table>
+                        <tr ng-repeat="file in files">
+                            <td>
+                                <div class="highline-upload-close">
+                                    <i class="fa fa-times" aria-hidden="true" ng-click="removeFile(file)" style="color: #990000;"></i>
+                                </div>
+                            </td>
+                            <td>{{ file.size / (1000 * 1000) | number:3 }} MB</td>
+                            <td>
+                                <div style="width: 20px; display: inline-block; text-align: right;">
+                                    {{ file.percent }}
+                                </div>
+                                %
+                            </td>
+                            <td>{{ file.name }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <!-- container element to hold control buttons -->
+                <div class="highline-upload-controls">
+
+                    <button class="btn btn-primary" id="browse">Select</button>
+                    <button class="btn btn-primary" ng-click="upload()" ng-disabled="uploadable()">Submit</button>
+                    <button class="btn btn-primary" ng-click="reset()">Reset</button>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <pre ng-show="debug">{{ files | json }}</pre>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>

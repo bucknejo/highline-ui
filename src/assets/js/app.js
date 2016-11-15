@@ -1,17 +1,25 @@
 'use strict';
 
 // Declare app level module
-var highline = angular.module('highline-ui', ['ui.router', 'ui.bootstrap', 'ngMessages', 'ngResource', 'ngCookies']);
+var highline = angular.module('highline-ui', ['ui.router', 'ui.bootstrap', 'ngMessages', 'ngResource', 'ngCookies', 'angular-plupload']);
 
 // Declare app level contants
 highline.constant("HIGHLINE", {
-  "SERVER": "http://localhost:8091/highline/",
-  "PORT": "8091",
-  "TEST": "test"
+  "SERVER": {
+    "RESOURCE": "http://localhost:8091/highline/"
+  },
+  "UPLOAD": {
+    "PATH": {
+      "AVATAR": "",
+      "RIDE": "",
+      "GROUP": "",
+      "LOCATION": ""
+    }
+  }
 });
 
 // Declare app level states
-highline.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+highline.config(['$stateProvider', '$urlRouterProvider', 'pluploadOptionProvider', function($stateProvider, $urlRouterProvider, pluploadOptionProvider) {
 
   var account = {
     name: 'account',
@@ -180,6 +188,23 @@ highline.config(['$stateProvider', '$urlRouterProvider', function($stateProvider
     }
   };
 
+  var sandbox = {
+    name: 'sandbox',
+    url: '/sandbox',
+    views: {
+      '': {
+        templateUrl: 'app/components/sandbox/sandbox.tpl.html'
+      },
+      'left@sandbox': {
+        templateUrl: 'app/components/sandbox/templates/sandbox-alley-left.tpl.html'
+      },
+      'right@sandbox': {
+        templateUrl: 'app/components/sandbox/templates/sandbox-alley-right.tpl.html'
+      }
+    }
+
+  };
+
   $stateProvider.state(account);
   $stateProvider.state(address);
   $stateProvider.state(dashboard);
@@ -190,12 +215,21 @@ highline.config(['$stateProvider', '$urlRouterProvider', function($stateProvider
   $stateProvider.state(login);
   $stateProvider.state(logout);
   $stateProvider.state(rides);
+  $stateProvider.state(sandbox);
 
   $urlRouterProvider.otherwise('/');
+
+  pluploadOptionProvider.setOptions({
+    flash_swf_url: 'assets/libs/plupload/js/Moxie.swf',
+    silverlight_xap_url: 'assets/libs/plupload/js/Moxie.xap',
+    max_file_size: '10mb'
+  });
 
 }]);
 
 // Declare app level root objects
 highline.run(function($rootScope) {
+
+
 
 });

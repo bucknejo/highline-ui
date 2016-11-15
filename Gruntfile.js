@@ -80,7 +80,10 @@ module.exports = function(grunt) {
                     // Protractor
                     "browser": false,
                     "element": false,
-                    "by": false
+                    "by": false,
+
+                    // Plupload
+                    "plupload": false
                 }
             }
         },

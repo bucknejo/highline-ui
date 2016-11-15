@@ -2,10 +2,6 @@
 
 angular.module('highline-ui').controller('HighlineAddressController', ['$scope', '$log', '$state', '$stateParams', 'HIGHLINE', 'HighlineHttpService', 'HighlineAuthentication', 'HighlineApplicationConstants', 'Address', function ($scope, $log, $state, $stateParams, HIGHLINE, HighlineHttpService, HighlineAuthentication, HighlineApplicationConstants, Address) {
 
-    console.log('in HighlineAddressController');
-    console.log('HIGHLINE.SERVER: ' + angular.toJson(HIGHLINE.SERVER));
-    console.log('HIGHLINE.PORT: ' + angular.toJson(HIGHLINE.PORT));
-
     $scope.states = HighlineApplicationConstants.OPTIONS.STATE;
 
     $scope.address_id = $stateParams.id;

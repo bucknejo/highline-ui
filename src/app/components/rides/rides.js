@@ -69,7 +69,7 @@ angular.module('highline-ui').controller('HighlineRidesController', ['$scope', '
 
         var request = {
             method: 'GET',
-            url: HIGHLINE.SERVER + 'service/gruppe/user/' + $scope.user_id
+            url: HIGHLINE.SERVER.RESOURCE + 'service/gruppe/user/' + $scope.user_id
         };
 
         $http(request).then(function success(response) {
@@ -182,7 +182,7 @@ angular.module('highline-ui').controller('HighlineRidesController', ['$scope', '
 
         var request = {
             method: 'GET',
-            url: HIGHLINE.SERVER + 'service/friend/' + $scope.user_id + '/ride/' + $scope.ride.id
+            url: HIGHLINE.SERVER.RESOURCE + 'service/friend/' + $scope.user_id + '/ride/' + $scope.ride.id
         };
 
         if ($scope.ride.id) {
@@ -235,7 +235,7 @@ angular.module('highline-ui').controller('HighlineRidesController', ['$scope', '
 
         var request = {
             method: 'POST',
-            url: HIGHLINE.SERVER + 'service/ridemember/' + $scope.ride.id + '/' + user_id
+            url: HIGHLINE.SERVER.RESOURCE + 'service/ridemember/' + $scope.ride.id + '/' + user_id
         };
 
         if ($scope.ride.id && user_id) {
@@ -255,7 +255,7 @@ angular.module('highline-ui').controller('HighlineRidesController', ['$scope', '
 
         var request = {
             method: 'POST',
-            url: HIGHLINE.SERVER + 'service/ride/gruppe/add/' + $scope.ride.id + '/' + gruppe_id
+            url: HIGHLINE.SERVER.RESOURCE + 'service/ride/gruppe/add/' + $scope.ride.id + '/' + gruppe_id
         };
 
         if ($scope.ride.id && gruppe_id) {
@@ -274,7 +274,7 @@ angular.module('highline-ui').controller('HighlineRidesController', ['$scope', '
 
         var request = {
             method: 'DELETE',
-            url: HIGHLINE.SERVER + 'service/ridemember/' + $scope.ride.id + '/' + user_id
+            url: HIGHLINE.SERVER.RESOURCE + 'service/ridemember/' + $scope.ride.id + '/' + user_id
         };
 
         if ($scope.ride.id) {

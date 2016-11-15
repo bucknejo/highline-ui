@@ -14,7 +14,7 @@ angular.module('highline-ui').controller('HighlineLoginController', ['$scope', '
 
     $scope.request = {
         method: 'POST',
-        url: HIGHLINE.SERVER + 'service/login',
+        url: HIGHLINE.SERVER.RESOURCE + 'service/login',
         data: $scope.user
     };
 

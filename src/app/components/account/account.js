@@ -2,10 +2,6 @@
 
 angular.module('highline-ui').controller('HighlineAccountController', ['$scope', '$log', '$state', 'HIGHLINE', 'HighlineHttpService', 'HighlineAuthentication', 'User', function ($scope, $log, $state, HIGHLINE, HighlineHttpService, HighlineAuthentication, User) {
 
-    console.log('in HighlineAccountController');
-    console.log('HIGHLINE.SERVER: ' + angular.toJson(HIGHLINE.SERVER));
-    console.log('HIGHLINE.PORT: ' + angular.toJson(HIGHLINE.PORT));
-
     if (!HighlineAuthentication.isAuthenticated()) {
         $state.go('login');
     }

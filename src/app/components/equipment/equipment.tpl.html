@@ -6,111 +6,131 @@
         <div class="col-md-8">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="segment-header">Equipment</div>
+                    <div class="segment-header">Equipment Details</div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
-                    <!-- form goes here -->
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form name="hlFormEquipment">
 
-                    <form name="hlFormEquipment">
+                                <div class="form-group" ng-class="{'has-error': hlFormEquipment.type.$touched && hlFormEquipment.type.$invalid}">
+                                    <label class="" for="type">Type</label>
+                                    <select id="type" name="type" placeholder="Type" class="form-control" ng-model="equipment.type"
+                                            ng-options="type.value as type.text for type in types" required>
+                                        <option value="" disabled selected>[Please Choose]</option>
+                                    </select>
+                                    <div ng-messages="hlFormEquipment.type.$error" class="help-block">
+                                        <div ng-message="required">Please provide your current type.</div>
+                                    </div>
+                                </div>
 
-                        <div class="form-group" ng-class="{'has-error': hlFormEquipment.type.$touched && hlFormEquipment.type.$invalid}">
-                            <label class="" for="type">Type</label>
-                            <select id="type" name="type" placeholder="Type" class="form-control" ng-model="equipment.type"
-                                    ng-options="type.value as type.text for type in types" required>
-                                <option value="" disabled selected>[Please Choose]</option>
-                            </select>
-                            <div ng-messages="hlFormEquipment.type.$error" class="help-block">
-                                <div ng-message="required">Please provide your current type.</div>
+                                <div class="form-group" ng-class="{'has-error': hlFormEquipment.style.$touched && hlFormEquipment.style.$invalid}">
+                                    <label class="" for="style">Style</label>
+                                    <select id="style" name="style" placeholder="Style" class="form-control" ng-model="equipment.style"
+                                            ng-options="style.value as style.text for style in styles" required>
+                                        <option value="" disabled selected>[Please Choose]</option>
+                                    </select>
+                                    <div ng-messages="hlFormEquipment.style.$error" class="help-block">
+                                        <div ng-message="required">Please provide your current style.</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group"
+                                     ng-class="{'has-error': hlFormEquipment.name.$touched && hlFormEquipment.name.$invalid}">
+                                    <label class="" for="name">Name</label>
+                                    <input type="text" id="name" name="name" placeholder="Name" class="form-control"
+                                           ng-model="equipment.name" required>
+                                    <div ng-messages="hlFormEquipment.name.$error" class="help-block">
+                                        <div ng-message="required">You must enter a name.</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" ng-class="{'has-error': hlFormEquipment.make.$touched && hlFormEquipment.make.$invalid}">
+                                    <label class="" for="make">Make</label>
+                                    <select id="make" name="make" placeholder="make" class="form-control" ng-model="equipment.make"
+                                            ng-options="make.value as make.text for make in makes" required>
+                                        <option value="" disabled selected>[Please Choose]</option>
+                                    </select>
+                                    <div ng-messages="hlFormEquipment.make.$error" class="help-block">
+                                        <div ng-message="required">Please provide your current make.</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group"
+                                     ng-class="{'has-error': hlFormEquipment.model.$touched && hlFormEquipment.model.$invalid}">
+                                    <label class="" for="model">Model</label>
+                                    <input type="text" id="model" model="model" placeholder="Model" class="form-control"
+                                           ng-model="equipment.model" required>
+                                    <div ng-messages="hlFormEquipment.model.$error" class="help-block">
+                                        <div ng-message="required">You must enter a model.</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" ng-class="{'has-error': hlFormEquipment.year.$touched && hlFormEquipment.year.$invalid}">
+                                    <label class="" for="year">Year</label>
+                                    <select id="year" name="year" placeholder="year" class="form-control" ng-model="equipment.year"
+                                            ng-options="year.value as year.text for year in years" required>
+                                        <option value="" disabled selected>[Please Choose]</option>
+                                    </select>
+                                    <div ng-messages="hlFormEquipment.year.$error" class="help-block">
+                                        <div ng-message="required">Please provide your current year.</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group"
+                                     ng-class="{'has-error': hlFormEquipment.note.$touched && hlFormEquipment.note.$invalid}">
+                                    <label class="" for="note">Note</label>
+                                    <input type="text" id="note" model="note" placeholder="Note" class="form-control"
+                                           ng-note="equipment.note" required>
+                                    <div ng-messages="hlFormEquipment.note.$error" class="help-block">
+                                        <div ng-message="required">You must enter a note.</div>
+                                    </div>
+                                </div>
+
+
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <div class="center-block">
+
+                                <button type="button" class="btn btn-primary" ng-click="addEquipment()"
+                                        ng-disabled="addable(hlFormEquipment.$invalid)">Add
+                                </button>
+                                <button type="button" class="btn btn-primary" ng-click="updateEquipment()"
+                                        ng-disabled="updatable(hlFormEquipment.$invalid)">Update
+                                </button>
+                                <button type="button" class="btn btn-primary" ng-click="deleteEquipment(hlFormEquipment)" ng-disabled="deletable()">
+                                    Delete
+                                </button>
+                                <button type="button" class="btn btn-primary" ng-click="clear(hlFormEquipment)">Clear</button>
+                                <button type="button" class="btn btn-primary" ng-click="reset(hlFormEquipment)" ng-disabled="deletable()">Reset
+                                </button>
+
                             </div>
                         </div>
-
-                        <div class="form-group" ng-class="{'has-error': hlFormEquipment.style.$touched && hlFormEquipment.style.$invalid}">
-                            <label class="" for="style">Style</label>
-                            <select id="style" name="style" placeholder="Style" class="form-control" ng-model="equipment.style"
-                                    ng-options="style.value as style.text for style in styles" required>
-                                <option value="" disabled selected>[Please Choose]</option>
-                            </select>
-                            <div ng-messages="hlFormEquipment.style.$error" class="help-block">
-                                <div ng-message="required">Please provide your current style.</div>
-                            </div>
-                        </div>
-
-                        <div class="form-group"
-                             ng-class="{'has-error': hlFormEquipment.name.$touched && hlFormEquipment.name.$invalid}">
-                            <label class="" for="name">Name</label>
-                            <input type="text" id="name" name="name" placeholder="Name" class="form-control"
-                                   ng-model="equipment.name" required>
-                            <div ng-messages="hlFormEquipment.name.$error" class="help-block">
-                                <div ng-message="required">You must enter a name.</div>
-                            </div>
-                        </div>
-
-                        <div class="form-group" ng-class="{'has-error': hlFormEquipment.make.$touched && hlFormEquipment.make.$invalid}">
-                            <label class="" for="make">Make</label>
-                            <select id="make" name="make" placeholder="make" class="form-control" ng-model="equipment.make"
-                                    ng-options="make.value as make.text for make in makes" required>
-                                <option value="" disabled selected>[Please Choose]</option>
-                            </select>
-                            <div ng-messages="hlFormEquipment.make.$error" class="help-block">
-                                <div ng-message="required">Please provide your current make.</div>
-                            </div>
-                        </div>
-
-                        <div class="form-group"
-                             ng-class="{'has-error': hlFormEquipment.model.$touched && hlFormEquipment.model.$invalid}">
-                            <label class="" for="model">Model</label>
-                            <input type="text" id="model" model="model" placeholder="Model" class="form-control"
-                                   ng-model="equipment.model" required>
-                            <div ng-messages="hlFormEquipment.model.$error" class="help-block">
-                                <div ng-message="required">You must enter a model.</div>
-                            </div>
-                        </div>
-
-                        <div class="form-group" ng-class="{'has-error': hlFormEquipment.year.$touched && hlFormEquipment.year.$invalid}">
-                            <label class="" for="year">Year</label>
-                            <select id="year" name="year" placeholder="year" class="form-control" ng-model="equipment.year"
-                                    ng-options="year.value as year.text for year in years" required>
-                                <option value="" disabled selected>[Please Choose]</option>
-                            </select>
-                            <div ng-messages="hlFormEquipment.year.$error" class="help-block">
-                                <div ng-message="required">Please provide your current year.</div>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group"
-                             ng-class="{'has-error': hlFormEquipment.note.$touched && hlFormEquipment.note.$invalid}">
-                            <label class="" for="note">Note</label>
-                            <input type="text" id="note" model="note" placeholder="Note" class="form-control"
-                                   ng-note="equipment.note" required>
-                            <div ng-messages="hlFormEquipment.note.$error" class="help-block">
-                                <div ng-message="required">You must enter a note.</div>
-                            </div>
-                        </div>
-                        
-
-                    </form>
-
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <div class="center-block">
+                <div class="col-md-6">
+                    <!-- photo -->
+                    <div class="row">
+                        <div class="col-md-12">
 
-                        <button type="button" class="btn btn-primary" ng-click="addEquipment()"
-                                ng-disabled="addable(hlFormEquipment.$invalid)">Add
-                        </button>
-                        <button type="button" class="btn btn-primary" ng-click="updateEquipment()"
-                                ng-disabled="updatable(hlFormEquipment.$invalid)">Update
-                        </button>
-                        <button type="button" class="btn btn-primary" ng-click="deleteEquipment(hlFormEquipment)" ng-disabled="deletable()">
-                            Delete
-                        </button>
-                        <button type="button" class="btn btn-primary" ng-click="clear(hlFormEquipment)">Clear</button>
-                        <button type="button" class="btn btn-primary" ng-click="reset(hlFormEquipment)" ng-disabled="deletable()">Reset
-                        </button>
+                        </div>
+                    </div>
+                    <!-- list -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="segment-subheader">Other Gear</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
 
+                        </div>
                     </div>
                 </div>
             </div>
