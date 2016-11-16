@@ -7,11 +7,12 @@ angular.module('highline-ui').directive('highlineUpload', [function () {
             activity: '='
         },
         templateUrl: 'app/shared/directives/templates/upload.tpl.html',
-        controller: ['$scope', 'HIGHLINE', 'HighlineAuthentication', function ($scope, HIGHLINE, HighlineAuthentication) {
+        controller: ['$scope', '$attrs', '$timeout', 'HIGHLINE', 'HighlineAuthentication', function ($scope, $attrs, $timeout, HIGHLINE, HighlineAuthentication) {
 
-            $scope.debug = true;
+            $scope.debug = false;
 
             $scope.showUploadControls = false;
+            $scope.maxFilesAllowed = $attrs.maxFilesAllowed;
 
             $scope.$watch(function () {
                 return HighlineAuthentication.isAuthenticated();
@@ -43,9 +44,7 @@ angular.module('highline-ui').directive('highlineUpload', [function () {
             };
 
             $scope.reset = function() {
-                angular.forEach($scope.files, function(file) {
-                    $scope.removeFile(file);
-                });
+                $scope.uploader.splice();
                 $scope.files = [];
             };
 
@@ -66,23 +65,25 @@ angular.module('highline-ui').directive('highlineUpload', [function () {
                 init: {
                     PostInit: function (up) {
                     },
+                    Browse: function(up) {
+                    },
                     FilesAdded: function (up, files) {
-                        plupload.each(files, function (file) {
-                            console.log('file: ' + file.name);
-                        });
-                        $scope.files = files;
+
+                        up.splice($scope.maxFilesAllowed);
+
+                        $scope.files = up.files;
                         $scope.$apply();
+
+                    },
+                    QueueChanged: function(up) {
+
                     },
                     FilesRemoved: function(up, files) {
-                        angular.forEach(files, function(file) {
-                            var index = $scope.files.indexOf(file);
-                            $scope.files.splice(index, 1);
-                        });
+
                     },
                     BeforeUpload: function(up, file) {
+                        console.log('files in queue: ' + up.files.length);
                         up.settings.multipart_params = {user_id: $scope.user_id, path_id: 'USER', original: file.name};
-                        console.log('file: ' + angular.toJson(file));
-                        console.log('uploader: ' + angular.toJson(up));
                     },
                     UploadProgress: function (up, file) {
                         var index = $scope.files.indexOf(file);
