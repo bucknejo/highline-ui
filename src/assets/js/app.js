@@ -8,13 +8,8 @@ highline.constant("HIGHLINE", {
   "SERVER": {
     "RESOURCE": "http://localhost:8091/highline/"
   },
-  "UPLOAD": {
-    "PATH": {
-      "AVATAR": "",
-      "RIDE": "",
-      "GROUP": "",
-      "LOCATION": ""
-    }
+  "EVENTS": {
+    "USER": "USER_CHANGED_EVENT"
   }
 });
 
@@ -220,6 +215,7 @@ highline.config(['$stateProvider', '$urlRouterProvider', 'pluploadOptionProvider
   $urlRouterProvider.otherwise('/');
 
   pluploadOptionProvider.setOptions({
+    runtimes: 'html5,flash,silverlight,html4',
     flash_swf_url: 'assets/libs/plupload/js/Moxie.swf',
     silverlight_xap_url: 'assets/libs/plupload/js/Moxie.xap',
     max_file_size: '10mb'

@@ -3,16 +3,20 @@
 angular.module('highline-ui').directive('highlineUpload', [function () {
     return {
         restrict: 'E',
-        scope: {
-            activity: '='
-        },
         templateUrl: 'app/shared/directives/templates/upload.tpl.html',
-        controller: ['$scope', '$attrs', '$timeout', 'HIGHLINE', 'HighlineAuthentication', function ($scope, $attrs, $timeout, HIGHLINE, HighlineAuthentication) {
+        controller: ['$rootScope', '$scope', '$attrs', '$timeout', 'HIGHLINE', 'HighlineAuthentication', function ($rootScope, $scope, $attrs, $timeout, HIGHLINE, HighlineAuthentication) {
 
             $scope.debug = false;
 
+            $scope.files = [];
             $scope.showUploadControls = false;
-            $scope.maxFilesAllowed = $attrs.maxFilesAllowed;
+            $scope.maxFilesAllowed = $attrs.maxFilesAllowed || 1;
+            $scope.listener = $attrs.listener || 'NONE';
+            $scope.uploadIcon = $attrs.uploadIcon || 'upload';
+
+            $scope.hasUploadError = false;
+            $scope.uploadErrorCode = 0;
+            $scope.uploadErrorMessage = "";
 
             $scope.$watch(function () {
                 return HighlineAuthentication.isAuthenticated();
@@ -29,10 +33,12 @@ angular.module('highline-ui').directive('highlineUpload', [function () {
                 $scope.showUploadControls = false;
             };
 
-            $scope.files = [];
-
             $scope.uploadable = function () {
-                return ($scope.files.length > 0) ? false : true;
+                return ($scope.files.length <= 0);
+            };
+
+            $scope.resettable = function () {
+                return ($scope.uploadable()) || $scope.hasUploadError;
             };
 
             $scope.upload = function () {
@@ -40,16 +46,17 @@ angular.module('highline-ui').directive('highlineUpload', [function () {
             };
 
             $scope.removeFile = function(file) {
+                $scope.hasUploadError = false;
                 $scope.uploader.removeFile(file);
             };
 
             $scope.reset = function() {
+                $scope.hasUploadError = false;
                 $scope.uploader.splice();
                 $scope.files = [];
             };
 
             $scope.uploader = new plupload.Uploader({
-                runtimes: 'html5,flash,silverlight,html4',
                 url: HIGHLINE.SERVER.RESOURCE + "service/upload/plupload",
                 browse_button: 'browse',
                 chunk_size: '200kb',
@@ -66,6 +73,7 @@ angular.module('highline-ui').directive('highlineUpload', [function () {
                     PostInit: function (up) {
                     },
                     Browse: function(up) {
+                        $scope.hasUploadError = false;
                     },
                     FilesAdded: function (up, files) {
 
@@ -82,8 +90,11 @@ angular.module('highline-ui').directive('highlineUpload', [function () {
 
                     },
                     BeforeUpload: function(up, file) {
-                        console.log('files in queue: ' + up.files.length);
-                        up.settings.multipart_params = {user_id: $scope.user_id, path_id: 'USER', original: file.name};
+                        up.settings.multipart_params = {
+                            user_id: $scope.user_id,
+                            path_id: 'USER',
+                            original: file.name
+                        };
                     },
                     UploadProgress: function (up, file) {
                         var index = $scope.files.indexOf(file);
@@ -94,13 +105,20 @@ angular.module('highline-ui').directive('highlineUpload', [function () {
 
                     },
                     UploadComplete: function(up, files) {
-                        console.log('upload complete!');
-                        $scope.reset();
-                        $scope.uploadClose();
-                        $scope.$apply();
+
+                        if (!$scope.hasUploadError) {
+                            $rootScope.$broadcast(HIGHLINE.EVENTS[$scope.listener]);
+                            $scope.reset();
+                            $scope.uploadClose();
+                            $scope.$apply();
+                        }
                     },
                     Error: function (up, err) {
-                        //document.getElementById('console').innerHTML += "\nError #" + err.code + ": " + err.message;
+                        up.stop();
+                        $scope.uploadErrorCode = err.code;
+                        $scope.uploadErrorMessage = err.message;
+                        $scope.hasUploadError = true;
+                        $scope.$apply();
                     }
                 }
             });

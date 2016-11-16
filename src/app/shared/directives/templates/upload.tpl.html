@@ -1,14 +1,18 @@
 <div class="highline-upload">
 
-    <!-- main button to enter directive -->
+    <!-- main button to enter directive
     <button class="btn btn-primary highline-upload-control-entry" ng-click="uploadOpen()">Upload</button>
+     -->
+
+    <i class="fa fa-upload" aria-hidden="true" ng-show="uploadIcon === 'upload'" ng-click="uploadOpen()"></i>
+    <i class="fa fa-pencil" aria-hidden="true" ng-show="uploadIcon === 'edit'" ng-click="uploadOpen()"></i>
 
     <!-- container element to hold control elements (position fixed in center of screen -->
     <div class="container highline-upload-control" ng-show="showUploadControls">
 
         <div class="row">
             <div class="col-md-12">
-                <div class="heading">Upload (10 file max)
+                <div class="heading">Upload ({{maxFilesAllowed}} file max)
                     <span class="highline-upload-close pull-right">
                         <i class="fa fa-times" aria-hidden="true" ng-click="uploadClose()"></i>
                     </span>
@@ -48,8 +52,28 @@
 
                     <button class="btn btn-primary" id="browse">Select</button>
                     <button class="btn btn-primary" ng-click="upload()" ng-disabled="uploadable()">Submit</button>
-                    <button class="btn btn-primary" ng-click="reset()">Reset</button>
+                    <button class="btn btn-primary" ng-click="reset()" ng-disabled="resettable()">Reset</button>
 
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12" ng-show="hasUploadError">
+                <div class="alert alert-danger highline-upload-error">
+                    <table>
+                        <tr>
+                            <td colspan="2">Upload Failure!</td>
+                        </tr>
+                        <tr>
+                            <td>Code:</td>
+                            <td>{{uploadErrorCode}}</td>
+                        </tr>
+                        <tr>
+                            <td>Message:</td>
+                            <td>{{uploadErrorMessage}}</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>

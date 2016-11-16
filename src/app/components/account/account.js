@@ -1,21 +1,25 @@
 'use strict';
 
-angular.module('highline-ui').controller('HighlineAccountController', ['$scope', '$log', '$state', 'HIGHLINE', 'HighlineHttpService', 'HighlineAuthentication', 'User', function ($scope, $log, $state, HIGHLINE, HighlineHttpService, HighlineAuthentication, User) {
+angular.module('highline-ui').controller('HighlineAccountController', ['$rootScope', '$scope', '$log', '$state', 'HIGHLINE', 'HighlineHttpService', 'HighlineAuthentication', 'User', function ($rootScope, $scope, $log, $state, HIGHLINE, HighlineHttpService, HighlineAuthentication, User) {
 
     if (!HighlineAuthentication.isAuthenticated()) {
         $state.go('login');
     }
 
     $scope.debug = false;
-    $scope.master = new User();
+    $scope.master = $scope.user = new User();
     $scope.user_id = HighlineAuthentication.getUserId();
 
-    $log.info('UserDetailController: ' + $scope.user_id);
-    $scope.test = 'this is a test.';
+    var getUser = function() {
+        $scope.user = User.get({id: $scope.user_id}, function () {
+            $scope.master = $scope.user;
+        });
+    };
 
-    $scope.user = User.get({id: $scope.user_id}, function () {
-        $scope.master = $scope.user;
-        $log.info('master set to first user get');
+    getUser();
+
+    $rootScope.$on(HIGHLINE.EVENTS.USER, function() {
+        getUser();
     });
 
     $scope.addUser = function () {
