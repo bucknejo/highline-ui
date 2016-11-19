@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('highline-ui').controller('HighlineRidesController', ['$scope', '$state', '$http', '$log', '$filter', '$uibModal', 'HIGHLINE', 'Ride', 'Location', 'Address', 'Gruppe', 'HighlineAuthentication', function($scope, $state, $http, $log, $filter, $uibModal, HIGHLINE, Ride, Location, Address, Gruppe, HighlineAuthentication) {
+angular.module('highline-ui').controller('HighlineRidesController', ['$scope', '$state', '$http', '$log', '$filter', '$uibModal', 'HIGHLINE', 'Ride', 'Location', 'Address', 'Gruppe', 'HighlineAuthentication', 'HighlineApplicationConstants', function($scope, $state, $http, $log, $filter, $uibModal, HIGHLINE, Ride, Location, Address, Gruppe, HighlineAuthentication, HighlineApplicationConstants) {
 
     $scope.debug = false;
     $scope.rides = Ride.query();
@@ -14,6 +14,11 @@ angular.module('highline-ui').controller('HighlineRidesController', ['$scope', '
     $scope.locations = [];
 
     $scope.idSelected = 0;
+
+    $scope.statii = HighlineApplicationConstants.OPTIONS.RIDE.STATII;
+    $scope.yns = HighlineApplicationConstants.OPTIONS.RIDE.YNS;
+    $scope.tempos = HighlineApplicationConstants.OPTIONS.RIDE.TEMPOS;
+    $scope.availability = HighlineApplicationConstants.OPTIONS.RIDE.ACCESS;
 
     $scope.getRidesByUser = function() {
         Ride.retrieve({id: 0, user_id: $scope.user_id}, function success(response) {
@@ -84,62 +89,6 @@ angular.module('highline-ui').controller('HighlineRidesController', ['$scope', '
     $scope.rm = {
         template: 'rm.html'
     };
-
-    $scope.statii = [{
-        value: 'ON TIME',
-        text: 'ON TIME',
-        selected: false
-    }, {
-        value: 'EARLY',
-        text: 'EARLY',
-        selected: false
-    }, {
-        value: 'DELAYED',
-        text: 'DELAYED',
-        selected: false
-    }, {
-        value: 'CANCELLED',
-        text: 'CANCELLED',
-        selected: false
-    }];
-
-    $scope.yns = [{
-        value: 0,
-        text: 'No',
-        selected: false
-    }, {
-        value: 1,
-        text: 'Yes',
-        selected: false
-    }];
-
-    $scope.tempos = [{
-        value: 'Slow',
-        text: 'Slow',
-        selected: false
-    }, {
-        value: 'Medium',
-        text: 'Medium',
-        selected: false
-    }, {
-        value: 'Fast',
-        text: 'Fast',
-        selected: false
-    }, {
-        value: 'Race',
-        text: 'Race',
-        selected: false
-    }];
-
-    $scope.availability = [{
-        value: 0,
-        text: 'Private',
-        selected: false
-    }, {
-        value: 1,
-        text: 'Public',
-        selected: false
-    }];
 
     function disabled(data) {
         var date = data.date,

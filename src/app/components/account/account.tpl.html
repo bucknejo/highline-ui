@@ -6,6 +6,11 @@
         </div>
         <div class="col-md-8">
             <div class="row">
+                <div class="col-md-12">
+                    <div class="segment-header-bold">Account</div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-6">
                     <div class="row">
                         <div class="col-md-12">
@@ -113,18 +118,13 @@
                         <div class="col-md-12 text-center">
                             <div class="center-block">
 
-                                <button type="button" class="btn btn-primary" ng-click="addUser()"
-                                        ng-disabled="addable(hlFormUser.$invalid)">Add
-                                </button>
-                                <button type="button" class="btn btn-primary" ng-click="updateUser()"
-                                        ng-disabled="updatable(hlFormUser.$invalid)">Update
-                                </button>
-                                <button type="button" class="btn btn-primary" ng-click="deleteUser(hlFormUser)" ng-disabled="deletable()">
-                                    Delete
-                                </button>
+                                <!--
+                                <button type="button" class="btn btn-primary" ng-click="addUser()" ng-disabled="addable(hlFormUser.$invalid)">Add</button>
+                                <button type="button" class="btn btn-primary" ng-click="deleteUser(hlFormUser)" ng-disabled="deletable()">Delete</button>
                                 <button type="button" class="btn btn-primary" ng-click="clear(hlFormUser)">Clear</button>
-                                <button type="button" class="btn btn-primary" ng-click="reset(hlFormUser)" ng-disabled="deletable()">Reset
-                                </button>
+                                -->
+                                <button type="button" class="btn btn-primary" ng-click="updateUser()" ng-disabled="updatable(hlFormUser.$invalid)">Update</button>
+                                <button type="button" class="btn btn-primary" ng-click="resetUser(hlFormUser)" ng-disabled="deletable()">Reset</button>
 
                             </div>
                         </div>

@@ -35,6 +35,9 @@ highlineServices.factory('HighlineApplicationConstants', [function(){
 
     constants.OPTIONS = {};
     constants.OPTIONS.EQUIPMENT = {};
+    constants.OPTIONS.ACCOUNT = {};
+    constants.OPTIONS.GROUP = {};
+    constants.OPTIONS.RIDE = {};
 
     constants.OPTIONS.STATE = [];
     constants.OPTIONS.COUNTRY = [];
@@ -43,6 +46,19 @@ highlineServices.factory('HighlineApplicationConstants', [function(){
     constants.OPTIONS.EQUIPMENT.STYLES = [];
     constants.OPTIONS.EQUIPMENT.MAKES = [];
     constants.OPTIONS.EQUIPMENT.YEARS = [];
+
+    constants.OPTIONS.ACCOUNT.SKILLS = [];
+    constants.OPTIONS.ACCOUNT.STYLES = [];
+    constants.OPTIONS.ACCOUNT.ACCESS = [];
+    constants.OPTIONS.ACCOUNT.GENDERS = [];
+
+    constants.OPTIONS.GROUP.TYPES = [];
+    constants.OPTIONS.GROUP.YNS = [];
+
+    constants.OPTIONS.RIDE.STATII = [];
+    constants.OPTIONS.RIDE.YNS = [];
+    constants.OPTIONS.RIDE.TEMPOS =[];
+    constants.OPTIONS.RIDE.ACCESS = [];
 
     constants.OPTIONS.STATE.push({value: 'AL', text: 'Alabama', selected: false});
     constants.OPTIONS.STATE.push({value: 'AK', text: 'Alaska', selected: false});
@@ -117,6 +133,46 @@ highlineServices.factory('HighlineApplicationConstants', [function(){
         year++;
     }
 
+    constants.OPTIONS.ACCOUNT.SKILLS.push({value: 'Beginner', text: 'Beginner', selected: false});
+    constants.OPTIONS.ACCOUNT.SKILLS.push({value: 'Intermediate', text: 'Intermediate', selected: false});
+    constants.OPTIONS.ACCOUNT.SKILLS.push( {value: 'Advanced', text: 'Advanced', selected: false});
+    constants.OPTIONS.ACCOUNT.SKILLS.push({value: 'Expert', text: 'Expert', selected: false});
+
+    constants.OPTIONS.ACCOUNT.STYLES.push({value: 'Mellow', text: 'Mellow', selected: false});
+    constants.OPTIONS.ACCOUNT.STYLES.push({value: 'Steady', text: 'Steady', selected: false});
+    constants.OPTIONS.ACCOUNT.STYLES.push({value: 'Moderate', text: 'Moderate', selected: false});
+    constants.OPTIONS.ACCOUNT.STYLES.push({value: 'Agressive', text: 'Agressive', selected: false});
+    constants.OPTIONS.ACCOUNT.STYLES.push({value: 'Race', text: 'Race', selected: false});
+
+    constants.OPTIONS.ACCOUNT.ACCESS.push({value: 0, text: 'Private', selected: false});
+    constants.OPTIONS.ACCOUNT.ACCESS.push({value: 1, text: 'Public', selected: false});
+
+    constants.OPTIONS.ACCOUNT.GENDERS.push({value: 'M', text: 'Male', selected: false});
+    constants.OPTIONS.ACCOUNT.GENDERS.push({value: 'F', text: 'Female', selected: false});
+    constants.OPTIONS.ACCOUNT.GENDERS.push({value: 'A', text: 'Alien', selected: false});
+
+    constants.OPTIONS.GROUP.TYPES.push({value: 0, text: 'Private', selected: false});
+    constants.OPTIONS.GROUP.TYPES.push({value: 1, text: 'Public', selected: false});
+
+    constants.OPTIONS.GROUP.YNS.push({value: 0, text: 'No', selected: false});
+    constants.OPTIONS.GROUP.YNS.push({value: 1, text: 'Yes', selected: false});
+
+    constants.OPTIONS.RIDE.STATII.push({value: 'ON TIME', text: 'ON TIME', selected: false});
+    constants.OPTIONS.RIDE.STATII.push({value: 'EARLY', text: 'EARLY', selected: false});
+    constants.OPTIONS.RIDE.STATII.push({value: 'DELAYED', text: 'DELAYED', selected: false});
+    constants.OPTIONS.RIDE.STATII.push({value: 'CANCELLED', text: 'CANCELLED', selected: false});
+
+    constants.OPTIONS.RIDE.YNS.push({value: 0, text: 'No', selected: false});
+    constants.OPTIONS.RIDE.YNS.push({value: 1, text: 'Yes', selected: false});
+
+    constants.OPTIONS.RIDE.TEMPOS.push({value: 'Slow', text: 'Slow', selected: false});
+    constants.OPTIONS.RIDE.TEMPOS.push({value: 'Medium', text: 'Medium', selected: false});
+    constants.OPTIONS.RIDE.TEMPOS.push({value: 'Fast', text: 'Fast', selected: false});
+    constants.OPTIONS.RIDE.TEMPOS.push({value: 'Race', text: 'Race', selected: false});
+
+    constants.OPTIONS.RIDE.ACCESS.push({value: 0, text: 'Private', selected: false});
+    constants.OPTIONS.RIDE.ACCESS.push({value: 1, text: 'Public', selected: false});
+
     return constants;
 
 }]);
@@ -172,7 +228,13 @@ highlineServices.factory('HighlineAuthentication', ['$cookies', function($cookie
 highlineServices.factory('Address', ['$resource', 'HIGHLINE', function($resource, HIGHLINE){
     return $resource(HIGHLINE.SERVER.RESOURCE + 'service/address/:id/:location_id', {}, {
         query: {method: 'GET', params: {}, isArray: true},
-        update: {method: 'PUT'},
+        update: {
+            method: 'POST',
+            params: {
+                id: '@id'
+            },
+            url: HIGHLINE.SERVER.RESOURCE  + 'service/address/update/:id/:location_id'
+        },
         retrieve: {method: 'GET', params: {
             location_id: '@location_id'
         }, isArray: true},
@@ -186,7 +248,13 @@ highlineServices.factory('Address', ['$resource', 'HIGHLINE', function($resource
 highlineServices.factory('Equipment', ['$resource', 'HIGHLINE', function($resource, HIGHLINE){
     return $resource(HIGHLINE.SERVER.RESOURCE + 'service/equipment', {}, {
         query: {method: 'GET', params: {}, isArray: true},
-        update: {method: 'PUT'},
+        update: {
+            method: 'POST',
+            params: {
+                id: '@id'
+            },
+            url: HIGHLINE.SERVER.RESOURCE  + 'service/equipment/update/:id'
+        },
         getByUser: {method: 'GET', params: {
             id: '@id',
             user_id: '@user_id'
@@ -203,7 +271,13 @@ highlineServices.factory('Friend', ['$resource', 'HIGHLINE', function($resource,
 highlineServices.factory('Gruppe', ['$resource', 'HIGHLINE', function($resource, HIGHLINE){
     return $resource(HIGHLINE.SERVER.RESOURCE + 'service/gruppe/:id', {id: '@id'}, {
         query: {method: 'GET', params: {}, isArray: true},
-        update: {method: 'PUT'}
+        update: {
+            method: 'POST',
+            params: {
+                id: '@id'
+            },
+            url: HIGHLINE.SERVER.RESOURCE  + 'service/gruppe/update/:id'
+        }
     });
 }]);
 
@@ -214,7 +288,13 @@ highlineServices.factory('GruppeMember', ['$resource', 'HIGHLINE', function($res
             gruppe_id:'@gruppe_id',
             user_id:'@user_id'
         }},
-        update: {method: 'PUT'},
+        update: {
+            method: 'POST',
+            params: {
+                id: '@id'
+            },
+            url: HIGHLINE.SERVER.RESOURCE  + 'service/gruppemember/update/:id/:gruppe_id/:user_id'
+        },
         remove: {method: 'DELETE', params: {
             gruppe_id:'@gruppe_id',
             user_id:'@user_id'
@@ -250,15 +330,27 @@ highlineServices.factory('Ride', ['$resource', 'HIGHLINE', function($resource, H
         retrieve: {method: 'GET', params: {
             user_id: '@user_id'
         }, isArray: true},
+        update: {
+            method: 'POST',
+            params: {
+                id: '@id'
+            },
+            url: HIGHLINE.SERVER.RESOURCE  + 'service/ride/update/:id/:user_id'
+        }
 
-        update: {method: 'PUT'},
     });
 }]);
 
 highlineServices.factory('User', ['$resource', 'HIGHLINE', function($resource, HIGHLINE){
     return $resource(HIGHLINE.SERVER.RESOURCE  + 'service/user/:id', {id: '@id'}, {
         query: {method: 'GET', params: {}, isArray: true},
-        update: {method: 'PUT'}
+        update: {
+            method: 'POST',
+            params: {
+                id: '@id'
+            },
+            url: HIGHLINE.SERVER.RESOURCE  + 'service/user/update/:id'
+        }
     });
 }]);
 

@@ -124,6 +124,15 @@ table.member tr td.val {color: #333;}
   margin-bottom: 5px;
 }
 
+.segment-header-bold {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #465a9b;
+  border-bottom: 1px solid #465a9b;
+  margin-bottom: 15px;
+}
+
+
 .segment-subheader {
   font-size: .9em;
   color: #465a9b;

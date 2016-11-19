@@ -14,7 +14,7 @@ highline.constant("HIGHLINE", {
 });
 
 // Declare app level states
-highline.config(['$stateProvider', '$urlRouterProvider', 'pluploadOptionProvider', function($stateProvider, $urlRouterProvider, pluploadOptionProvider) {
+highline.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 'pluploadOptionProvider', function($stateProvider, $urlRouterProvider, $httpProvider, pluploadOptionProvider) {
 
   var account = {
     name: 'account',
@@ -213,6 +213,10 @@ highline.config(['$stateProvider', '$urlRouterProvider', 'pluploadOptionProvider
   $stateProvider.state(sandbox);
 
   $urlRouterProvider.otherwise('/');
+
+  //delete $httpProvider.defaults.headers.common["X-Requested-With"];
+  //$httpProvider.defaults.useXDomain = true;
+  //delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
   pluploadOptionProvider.setOptions({
     runtimes: 'html5,flash,silverlight,html4',

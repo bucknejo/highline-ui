@@ -1,18 +1,19 @@
 'use strict';
 
-angular.module('highline-ui').controller('HighlineAccountController', ['$rootScope', '$scope', '$log', '$state', 'HIGHLINE', 'HighlineHttpService', 'HighlineAuthentication', 'User', function ($rootScope, $scope, $log, $state, HIGHLINE, HighlineHttpService, HighlineAuthentication, User) {
+angular.module('highline-ui').controller('HighlineAccountController', ['$rootScope', '$scope', '$log', '$state', 'HIGHLINE', 'HighlineHttpService', 'HighlineAuthentication', 'HighlineApplicationConstants', 'User', function ($rootScope, $scope, $log, $state, HIGHLINE, HighlineHttpService, HighlineAuthentication, HighlineApplicationConstants, User) {
 
     if (!HighlineAuthentication.isAuthenticated()) {
         $state.go('login');
     }
 
     $scope.debug = false;
-    $scope.master = $scope.user = new User();
+    $scope.master = new User();
+    $scope.user = new User();
     $scope.user_id = HighlineAuthentication.getUserId();
 
     var getUser = function() {
         $scope.user = User.get({id: $scope.user_id}, function () {
-            $scope.master = $scope.user;
+            $scope.master = angular.copy($scope.user);
         });
     };
 
@@ -50,12 +51,12 @@ angular.module('highline-ui').controller('HighlineAccountController', ['$rootSco
         $scope.user = new User();
     };
 
-    $scope.reset = function (form) {
+    $scope.resetUser = function (form) {
         if (form) {
             form.$setPristine();
             form.$setUntouched();
         }
-        $scope.user = $scope.master;
+        $scope.user = angular.copy($scope.master);
     };
 
     $scope.deletable = function () {
@@ -81,70 +82,10 @@ angular.module('highline-ui').controller('HighlineAccountController', ['$rootSco
     };
 
     // select lists
-    $scope.skills = [{
-        value: 'Beginner',
-        text: 'Beginner',
-        selected: false
-    }, {
-        value: 'Intermediate',
-        text: 'Intermediate',
-        selected: false
-    }, {
-        value: 'Advanced',
-        text: 'Advanced',
-        selected: false
-    }, {
-        value: 'Expert',
-        text: 'Expert',
-        selected: false
-    }];
-
-    $scope.styles = [{
-        value: 'Mellow',
-        text: 'Mellow',
-        selected: false
-    }, {
-        value: 'Steady',
-        text: 'Steady',
-        selected: false
-    }, {
-        value: 'Moderate',
-        text: 'Moderate',
-        selected: false
-    }, {
-        value: 'Agressive',
-        text: 'Agressive',
-        selected: false
-    }, {
-        value: 'Race',
-        text: 'Race',
-        selected: false
-    }];
-
-    $scope.viewables = [{
-        value: 0,
-        text: 'Private',
-        selected: false
-    }, {
-        value: 1,
-        text: 'Public',
-        selected: false
-    }];
-
-    $scope.genders = [{
-        value: 'M',
-        text: 'Male',
-        selected: false
-    }, {
-        value: 'F',
-        text: 'Female',
-        selected: false
-    }, {
-        value: 'A',
-        text: 'Alien',
-        selected: false
-    }];
-
+    $scope.skills = HighlineApplicationConstants.OPTIONS.ACCOUNT.SKILLS;
+    $scope.styles = HighlineApplicationConstants.OPTIONS.ACCOUNT.STYLES;
+    $scope.viewables = HighlineApplicationConstants.OPTIONS.ACCOUNT.ACCESS;
+    $scope.genders = HighlineApplicationConstants.OPTIONS.ACCOUNT.GENDERS;
 
 }]);
 

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('highline-ui').controller('HighlineGroupsController', ['$scope', '$state', '$http', 'HIGHLINE', 'Gruppe', 'GruppeMember', '$log', '$filter', '$uibModal', 'HighlineAuthentication', function($scope, $state, $http, HIGHLINE, Gruppe, GruppeMember, $log, $filter, $uibModal, HighlineAuthentication) {
+angular.module('highline-ui').controller('HighlineGroupsController', ['$scope', '$state', '$http', 'HIGHLINE', 'Gruppe', 'GruppeMember', '$log', '$filter', '$uibModal', 'HighlineAuthentication', 'HighlineApplicationConstants', function($scope, $state, $http, HIGHLINE, Gruppe, GruppeMember, $log, $filter, $uibModal, HighlineAuthentication, HighlineApplicationConstants) {
 
     // initialization
     $scope.debug = true;
@@ -9,25 +9,8 @@ angular.module('highline-ui').controller('HighlineGroupsController', ['$scope', 
     $scope.user_id = HighlineAuthentication.getUserId();
 
     // drop down list items
-    $scope.types = [{
-        value: 0,
-        text: 'Private',
-        selected: false
-    }, {
-        value: 1,
-        text: 'Public',
-        selected: false
-    }];
-
-    $scope.yns = [{
-        value: 0,
-        text: 'No',
-        selected: false
-    }, {
-        value: 1,
-        text: 'Yes',
-        selected: false
-    }];
+    $scope.types = HighlineApplicationConstants.OPTIONS.GROUP.TYPES;
+    $scope.yns = HighlineApplicationConstants.OPTIONS.GROUP.YNS;
 
     // get gruppes by user
     $scope.getGruppesByUser = function() {
@@ -49,7 +32,7 @@ angular.module('highline-ui').controller('HighlineGroupsController', ['$scope', 
 
         var request = {
             method: 'GET',
-            url: HIGHLINE.SERVER.RESOURCE + 'service/friend/' + $scope.user_id + '/gruppe/' + $scope.gruppe.id
+                    url: HIGHLINE.SERVER.RESOURCE + 'service/friend/' + $scope.user_id + '/gruppe/' + $scope.gruppe.id
         };
 
         if ($scope.gruppe.id) {
