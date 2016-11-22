@@ -5,6 +5,7 @@
             <div ui-view="left"></div>
         </div>
         <div class="col-md-8">
+            <highline-quick-actions action="account"></highline-quick-actions>
             <div class="row">
                 <div class="col-md-12">
                     <div class="segment-header-bold">Account</div>
@@ -20,7 +21,7 @@
                     <div class="row">
                         <div class="col-md-12">
 
-                            <form name="hlFormUser">
+                            <form name="hlFormUser" form-helper event-name="{{eventName}}">
 
                                 <div class="form-group"
                                      ng-class="{'has-error': hlFormUser.firstName.$touched && hlFormUser.firstName.$invalid}">
@@ -125,6 +126,7 @@
                                 -->
                                 <button type="button" class="btn btn-primary" ng-click="updateUser()" ng-disabled="updatable(hlFormUser.$invalid)">Update</button>
                                 <button type="button" class="btn btn-primary" ng-click="resetUser(hlFormUser)" ng-disabled="deletable()">Reset</button>
+                                <button type="button" class="btn btn-primary" ng-click="openModal(settings)">Open Modal</button>
 
                             </div>
                         </div>

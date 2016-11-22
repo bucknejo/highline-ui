@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('highline-ui').controller('HighlineAccountController', ['$rootScope', '$scope', '$log', '$state', 'HIGHLINE', 'HighlineHttpService', 'HighlineAuthentication', 'HighlineApplicationConstants', 'User', function ($rootScope, $scope, $log, $state, HIGHLINE, HighlineHttpService, HighlineAuthentication, HighlineApplicationConstants, User) {
+angular.module('highline-ui').controller('HighlineAccountController', ['$rootScope', '$scope', '$log', '$state', 'HIGHLINE', 'HighlineHttpService', 'HighlineAuthentication', 'HighlineApplicationConstants', 'HighlineConfirmation', 'User', function ($rootScope, $scope, $log, $state, HIGHLINE, HighlineHttpService, HighlineAuthentication, HighlineApplicationConstants, HighlineConfirmation, User) {
 
     if (!HighlineAuthentication.isAuthenticated()) {
         $state.go('login');
@@ -10,6 +10,7 @@ angular.module('highline-ui').controller('HighlineAccountController', ['$rootSco
     $scope.master = new User();
     $scope.user = new User();
     $scope.user_id = HighlineAuthentication.getUserId();
+    $scope.eventName = HIGHLINE.EVENTS.FORM_SUCCESS_USER;
 
     var getUser = function() {
         $scope.user = User.get({id: $scope.user_id}, function () {
@@ -31,8 +32,11 @@ angular.module('highline-ui').controller('HighlineAccountController', ['$rootSco
     };
 
     $scope.updateUser = function () {
-        $scope.user.$update(function () {
+        $scope.user.$update(function (value, responseHeaders, status, statusText) {
             $log.info('User [update]: ' + JSON.stringify($scope.user));
+            $rootScope.$broadcast($scope.eventName);
+        }, function(httpResponse) {
+            $log.info('User [error]: ' + angular.toJson(httpResponse));
         });
     };
 
@@ -79,6 +83,16 @@ angular.module('highline-ui').controller('HighlineAccountController', ['$rootSco
     $scope.editAddress = function(id) {
         $log.info('edit address id: ' + id);
         $state.go('address', {"id": id});
+    };
+
+    $scope.modalSettings = {
+        title: 'Account Update',
+        body: 'Update Account Info?',
+        size: 'md'
+    };
+
+    $scope.openModal = function() {
+        HighlineConfirmation.open($scope.modalSettings);
     };
 
     // select lists

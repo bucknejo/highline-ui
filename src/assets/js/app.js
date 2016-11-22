@@ -1,7 +1,7 @@
 'use strict';
 
 // Declare app level module
-var highline = angular.module('highline-ui', ['ui.router', 'ui.bootstrap', 'ngMessages', 'ngResource', 'ngCookies', 'angular-plupload']);
+var highline = angular.module('highline-ui', ['ui.router', 'ui.bootstrap', 'ngMessages', 'ngResource', 'ngCookies', 'ngAnimate', 'angular-plupload']);
 
 // Declare app level contants
 highline.constant("HIGHLINE", {
@@ -9,7 +9,8 @@ highline.constant("HIGHLINE", {
     "RESOURCE": "http://localhost:8091/highline/"
   },
   "EVENTS": {
-    "USER": "USER_CHANGED_EVENT"
+    "USER": "USER_CHANGED_EVENT",
+    "FORM_SUCCESS_USER": "FORM_UPDATE_SUCCESS_EVENT"
   }
 });
 

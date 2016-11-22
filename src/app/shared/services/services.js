@@ -177,12 +177,100 @@ highlineServices.factory('HighlineApplicationConstants', [function(){
 
 }]);
 
+highlineServices.factory('HighlineConfirmation', ['$uibModal', '$log', function ($uibModal, $log) {
+
+    var confirmation = {};
+
+    var _title = 'Modal Title';
+    var _body = 'Modal Body';
+    var _animation = false;
+    var _size = 'sm';
+
+    confirmation.setTitle = function(title) {
+        _title = title;
+    };
+
+    confirmation.getTitle = function() {
+        return _title;
+    };
+
+    confirmation.setBody = function(body) {
+        _body = body;
+    };
+
+    confirmation.getBody = function () {
+        return _body;
+    };
+
+    confirmation.setAnimation = function(animation) {
+        _animation = animation;
+    };
+
+    confirmation.getAnimation = function() {
+        return _animation;
+    };
+
+    confirmation.setSize = function(size) {
+        _size = size;
+    };
+
+    confirmation.getSize = function() {
+        return _size;
+    };
+
+    confirmation.open = function(settings) {
+
+        var _settings = settings || {};
+
+        var modalInstance = $uibModal.open({
+            animation: this.getAnimation(),
+            ariaLabelledBy: 'modal-title',
+            ariaDescribedBy: 'modal-body',
+            templateUrl: 'app/shared/directives/templates/confirm.tpl.html',
+            controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
+
+                $scope.title = _settings.title || confirmation.getTitle();
+                $scope.body = _settings.body || confirmation.getBody();
+
+                $scope.ok = function() {
+                    $uibModalInstance.close();
+                };
+
+                $scope.cancel = function() {
+                    $uibModalInstance.dismiss();
+                };
+
+            }],
+            controllerAs: '$ctrl',
+            size: _settings.size || confirmation.getSize(),
+            resolve: {
+                /*
+                items: function () {
+                    return $ctrl.items;
+                }
+                */
+            }
+        });
+
+        modalInstance.result.then(function () {
+            $log.info('Modal ok\'d at: ' + new Date());
+        }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
+        });
+
+    };
+
+    return confirmation;
+
+}]);
+
 highlineServices.factory('HighlineAuthentication', ['$cookies', function($cookies){
 
+    var debug = true;
     var authentication = {};
 
-    var _authenticated = false;
-    var _user_id = -1;
+    var _authenticated = (debug) ? true : false;
+    var _user_id = (debug) ? 1 : -1;
 
     var _authCookie = {
         authenticated: _authenticated,

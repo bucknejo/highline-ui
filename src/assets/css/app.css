@@ -11,12 +11,17 @@
 *
 * dc01: #465a9b
 * dc02: #6493ed
-
-
+*
+*
 * rs01: #465a9b
 * rs02: #527de8
 * rs03: #666666
 * rs04: #798489
+*
+* beginner:      #40b450 64  180 80
+* intermediate:  #1a77ba 26  119 186
+* advanced:      #000000 0   0   0
+* terrain:       #f69432 246 148 50
 *
 *************************************/
 
@@ -169,3 +174,92 @@ table.member tr td.val {color: #333;}
 a.site-link-1 {color: #333; text-decoration: none; cursor: hand; cursor: pointer;}
 a.site-link-1:hover {color: #999; text-decoration: none;}
 a.site-link-1:visited {color: #333; text-decoration: none;}
+
+/* form helper */
+
+.form-control {
+  -webkit-transition: border-color .5s ease-in-out, background-color .5s ease-in-out;
+  -moz-transition: border-color .5s ease-in-out, background-color .5s ease-in-out;
+  -o-transition: border-color .5s ease-in-out, background-color .5s ease-in-out;
+  transition: border-color .5s ease-in-out, background-color .5s ease-in-out;
+}
+
+.form-success-flash {
+  border-color: green;
+  background-color: rgba(210,250,220,.8);
+}
+
+#highline-quick-actions {
+  margin: 10px;
+  text-align: center;
+}
+
+#highline-quick-actions ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+#highline-quick-actions ul li {
+  display: inline;
+}
+
+#highline-quick-actions ul li div {
+  color: #465a9b;
+  display: inline-block;
+  text-align: center;
+}
+
+#highline-quick-actions ul li div img {
+  margin:0 5px 0 5px;
+}
+
+#highline-quick-actions ul li div img:hover {
+  cursor: default;
+}
+
+#highline-quick-actions ul li div:hover {
+  color: #527de8;
+  cursor: pointer;
+  cursor: hand;
+}
+
+#highline-quick-actions .qa-selected {
+  border-bottom: 2px solid #465a9b;
+}
+
+.green-circle {
+  width: 12px;
+  height: 12px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  border-radius: 6px;
+  display: inline-block;
+  background-color: #40b450;
+}
+
+.blue-square {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  background-color: #1a77ba;
+}
+
+.black-diamond {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  background-color: #000;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-transform-origin: 0 100%;
+  -moz-transform-origin: 0 100%;
+  -ms-transform-origin: 0 100%;
+  -o-transform-origin: 0 100%;
+  transform-origin: 0 100%;
+}
