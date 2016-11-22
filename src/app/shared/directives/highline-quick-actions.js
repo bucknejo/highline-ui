@@ -6,7 +6,7 @@ angular.module('highline-ui').directive('highlineQuickActions', [function() {
         scope: {
             activity: '='
         },
-        templateUrl: 'app/shared/directives/templates/quick-actions.tpl.html',
+        templateUrl: 'app/shared/directives/templates/highline-quick-actions.tpl.html',
         controller: ['$scope', '$state', '$attrs', function($scope, $state, $attrs) {
 
             $scope.actions = ['account', 'dashboard', 'friends', 'groups', 'rides'];

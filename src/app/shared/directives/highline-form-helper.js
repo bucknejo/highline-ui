@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('highline-ui').directive('formHelper', ['$animate', 'HIGHLINE', function($animate, HIGHLINE) {
+angular.module('highline-ui').directive('highlineFormHelper', ['$animate', function($animate) {
     return {
         require: '^form',
         scope: {},

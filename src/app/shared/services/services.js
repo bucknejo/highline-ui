@@ -226,7 +226,7 @@ highlineServices.factory('HighlineConfirmation', ['$uibModal', '$log', function 
             animation: this.getAnimation(),
             ariaLabelledBy: 'modal-title',
             ariaDescribedBy: 'modal-body',
-            templateUrl: 'app/shared/directives/templates/confirm.tpl.html',
+            templateUrl: 'app/shared/directives/templates/highline-confirm.tpl.html',
             controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
 
                 $scope.title = _settings.title || confirmation.getTitle();
@@ -365,6 +365,13 @@ highlineServices.factory('Gruppe', ['$resource', 'HIGHLINE', function($resource,
                 id: '@id'
             },
             url: HIGHLINE.SERVER.RESOURCE  + 'service/gruppe/update/:id'
+        },
+        delete: {
+            method: 'POST',
+            params: {
+                id: '@id'
+            },
+            url: HIGHLINE.SERVER.RESOURCE  + 'service/gruppe/delete/:id'
         }
     });
 }]);
@@ -383,10 +390,15 @@ highlineServices.factory('GruppeMember', ['$resource', 'HIGHLINE', function($res
             },
             url: HIGHLINE.SERVER.RESOURCE  + 'service/gruppemember/update/:id/:gruppe_id/:user_id'
         },
-        remove: {method: 'DELETE', params: {
-            gruppe_id:'@gruppe_id',
-            user_id:'@user_id'
-        }}
+        remove: {
+            method: 'POST',
+            params: {
+                id: '@id',
+                gruppe_id:'@gruppe_id',
+                user_id:'@user_id'
+            },
+            url: HIGHLINE.SERVER.RESOURCE  + 'service/gruppemember/remove/:id/:gruppe_id/:user_id'
+        }
 
     });
 }]);

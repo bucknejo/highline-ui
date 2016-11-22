@@ -3,7 +3,7 @@
 angular.module('highline-ui').directive('highlineUpload', [function () {
     return {
         restrict: 'E',
-        templateUrl: 'app/shared/directives/templates/upload.tpl.html',
+        templateUrl: 'app/shared/directives/templates/highline-upload.tpl.html',
         controller: ['$rootScope', '$scope', '$attrs', '$timeout', 'HIGHLINE', 'HighlineAuthentication', function ($rootScope, $scope, $attrs, $timeout, HIGHLINE, HighlineAuthentication) {
 
             $scope.debug = false;

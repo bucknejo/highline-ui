@@ -14,7 +14,7 @@
         <tbody>
         <tr ng-repeat="activity in activities" ng-click="activityDetail(activity.id)" ng-class="{warning: activity.id === idSelected}">
             <td style="text-align: center;">
-                <activity-type input="" activity="activity"></activity-type>
+                <highline-activity-type input="" activity="activity"></highline-activity-type>
             </td>
             <td>{{activity.name}}</td>
             <td>{{activity.description}}</td>

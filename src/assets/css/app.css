@@ -263,3 +263,31 @@ a.site-link-1:visited {color: #333; text-decoration: none;}
   -o-transform-origin: 0 100%;
   transform-origin: 0 100%;
 }
+
+.table-row-delete {
+  cursor: pointer;
+  cursor: hand;
+  color: #465a9b;
+}
+
+.table-row-add {
+  cursor: pointer;
+  cursor: hand;
+  color: #465a9b;
+}
+
+.polar-helper-yes {
+  color: #40b450;
+}
+
+.polar-helper-yes-neutral {
+  color: #465a9b;
+}
+
+.polar-helper-no {
+  color: #990000;
+}
+
+.polar-helper-no-neutral {
+  color: #527de8;
+}

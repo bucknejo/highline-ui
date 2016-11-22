@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('highline-ui').controller('HighlineGroupsController', ['$scope', '$state', '$http', 'HIGHLINE', 'Gruppe', 'GruppeMember', '$log', '$filter', '$uibModal', 'HighlineAuthentication', 'HighlineApplicationConstants', function($scope, $state, $http, HIGHLINE, Gruppe, GruppeMember, $log, $filter, $uibModal, HighlineAuthentication, HighlineApplicationConstants) {
+angular.module('highline-ui').controller('HighlineGroupsController', ['$rootScope', '$scope', '$state', '$http', 'HIGHLINE', 'Gruppe', 'GruppeMember', '$log', '$filter', '$uibModal', 'HighlineAuthentication', 'HighlineApplicationConstants', function($rootScope, $scope, $state, $http, HIGHLINE, Gruppe, GruppeMember, $log, $filter, $uibModal, HighlineAuthentication, HighlineApplicationConstants) {
 
     // initialization
     $scope.debug = true;
@@ -11,6 +11,10 @@ angular.module('highline-ui').controller('HighlineGroupsController', ['$scope', 
     // drop down list items
     $scope.types = HighlineApplicationConstants.OPTIONS.GROUP.TYPES;
     $scope.yns = HighlineApplicationConstants.OPTIONS.GROUP.YNS;
+
+    $scope.eventName = HIGHLINE.EVENTS.FORM_SUCCESS_GROUP;
+
+    $scope.idSelected = void 0;
 
     // get gruppes by user
     $scope.getGruppesByUser = function() {
@@ -46,15 +50,15 @@ angular.module('highline-ui').controller('HighlineGroupsController', ['$scope', 
         }
     };
 
-    // call server for latest gruppes and friends
-    $scope.refresh = function() {
-        $scope.getGruppesByUser();
-        $scope.getAvailableFriendsForGruppe();
+    $scope.setCurrentGruppe = function(id) {
+        $scope.gruppe = new Gruppe();
+        if ($scope.gruppes) {
+            var gruppe = $filter('filter')($scope.gruppes, {id: id})[0];
+            angular.extend($scope.gruppe, gruppe);
+        }
     };
-    $scope.refresh();
 
     // get details for gruppe selected from list
-    $scope.idSelected = null;
     $scope.gruppeDetail = function(id) {
         $log.info('in gruppe detail: ' + id);
         $scope.idSelected = id;
@@ -66,11 +70,15 @@ angular.module('highline-ui').controller('HighlineGroupsController', ['$scope', 
         $scope.getAvailableFriendsForGruppe();
     };
 
-    $scope.setCurrentGruppe = function(id) {
-        var gruppe = $filter('filter')($scope.gruppes, {id: id})[0];
-        $scope.gruppe = new Gruppe();
-        angular.extend($scope.gruppe, gruppe);
+
+    // call server for latest gruppes and friends
+    $scope.refresh = function() {
+        $scope.getGruppesByUser();
+        //$scope.getAvailableFriendsForGruppe();
+        $scope.gruppeDetail($scope.idSelected || 0);
     };
+
+    $scope.refresh();
 
     // start of crud operations
     $scope.addGruppe = function() {
@@ -86,6 +94,7 @@ angular.module('highline-ui').controller('HighlineGroupsController', ['$scope', 
         $log.info('updating gruppe');
         $scope.gruppe.$update(function success(){
             $scope.refresh();
+            $rootScope.$broadcast($scope.eventName);
         }, function error(response) {
             $log.info('error running update on Gruppe: ' + JSON.stringify(response));
         });
