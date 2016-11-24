@@ -39,3 +39,10 @@
     font-size: 0.8em;
     margin: 10px 0 10px 0;
 }
+
+#highline-dashboard .edit {
+    font-size: 0.8em;
+    color: #465a9b;
+    cursor: hand;
+    cursor: pointer;
+}

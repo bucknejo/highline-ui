@@ -1,5 +1,9 @@
 <div>
-    <div class="segment-header">Account</div>
+    <div class="segment-header">Account
+        <span class="pull-right highline-hover">
+            <i class="fa fa-pencil edit" aria-hidden="true" ng-click="editAccount()"></i>
+        </span>
+    </div>
 
     <ul class="account-info-list">
         <li>First Name: {{user.first_name}}</li>
@@ -10,7 +14,11 @@
         <li>Style: {{user.style}}</li>
     </ul>
 
-    <div class="segment-header">Equipment</div>
+    <div class="segment-header">Equipment
+        <span class="pull-right highline-hover">
+            <i class="fa fa-pencil edit" aria-hidden="true" ng-click="editEquipment()"></i>
+        </span>
+    </div>
 
     <ul class="account-equipment-list">
         <li ng-repeat="e in user.equipment">

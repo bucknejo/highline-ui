@@ -226,8 +226,8 @@
                                             <td style="text-align: center;">
                                                 <highline-skill-level skill="rider.skill"></highline-skill-level>
                                             </td>
-                                            <td class="text-center">
-                                                <button type="button" class="close" aria-label="Close" ng-click="removeMemberFromRide(rider.id)"><span aria-hidden="true">&times;</span></button>
+                                            <td>
+                                                <i class="fa fa-times table-row-delete" aria-hidden="true" ng-click="removeMemberFromRide(rider.id)"></i>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -263,7 +263,7 @@
                                             <td>{{gruppe.name}}</td>
                                             <td>{{gruppe.description}}</td>
                                             <td class="text-center">
-                                                <button type="button" class="close" aria-label="Close" ng-click="addGruppeToRide(gruppe.id)"><span aria-hidden="true">+</span></button>
+                                                <i class="fa fa-plus table-row-add" aria-hidden="true" ng-click="addGruppeToRide(gruppe.id)"></i>
                                             </td>
 
                                             <script type="text/ng-template" id="rm.html">
@@ -337,7 +337,7 @@
                                                 <highline-skill-level skill="friend.skill"></highline-skill-level>
                                             </td>
                                             <td class="text-center">
-                                                <button type="button" class="close" aria-label="Close" ng-click="addMemberToRide(friend.id)"><span aria-hidden="true">+</span></button>
+                                                <i class="fa fa-plus table-row-add" aria-hidden="true" ng-click="addMemberToRide(friend.id)"></i>
                                             </td>
                                         </tr>
                                         </tbody>

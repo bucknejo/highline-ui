@@ -6,5 +6,13 @@ angular.module('highline-ui').controller('HighlineDashboardController', ['$scope
         $state.go('login');
     }
 
+    $scope.editAccount = function() {
+        $state.go('account');
+    };
+
+    $scope.editEquipment = function() {
+        $state.go('equipment');
+    };
+
 }]);
 

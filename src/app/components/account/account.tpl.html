@@ -136,7 +136,11 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="segment-header">Addresses</div>
+                            <div class="segment-header">Addresses
+                                <span class="pull-right">
+                                    <i class="fa fa-plus edit" aria-hidden="true" ng-click="editAddress()"></i>
+                                </span>
+                            </div>
 
                             <table class="table table-striped table-hover equipment-table">
                                 <thead>
@@ -169,7 +173,11 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="segment-header">Equipment</div>
+                            <div class="segment-header">Equipment
+                                <span class="pull-right">
+                                    <i class="fa fa-plus edit" aria-hidden="true" ng-click="editEquipment()"></i>
+                                </span>
+                            </div>
                             <table class="table table-striped table-hover equipment-table">
                                 <thead>
                                 <tr>
@@ -189,7 +197,7 @@
                                     <td>{{item.model}}</td>
                                     <td>{{item.year}}</td>
                                     <td>
-                                        <i class="fa fa-pencil" aria-hidden="true" class="account-equipment-edit" style="cursor: hand; cursor: pointer; color: #465a9b;" ng-click="editEquipment(item.id)"></i>
+                                        <i class="fa fa-pencil edit" aria-hidden="true" ng-click="editEquipment(item.id)"></i>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -198,40 +206,223 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="segment-header">Preferences</div>
-
-                            <div class="segment-subheader">Avatar
-                                <span class="pull-right highline-hover">
-                                    <highline-upload id="upload-avatar" max-files-allowed="1" listener="USER" upload-icon="edit"></highline-upload>
+                            <div class="segment-header">Avatar
+                                <span class="pull-right">
+                                    <highline-upload id="upload-avatar" max-files-allowed="1" listener="USER" upload-icon="edit" class="edit"></highline-upload>
                                 </span>
                             </div>
-                            <div>
+                            <div style="margin-bottom: 10px;">
                                 <img ng-src="{{user.avatar}}" alt="Highline Avatar" class="img-thumbnail avatar-medium"/>
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="segment-header">Preferences</div>
 
-                            <div class="segment-subheader">Access</div>
-                            <ul class="preferences-list">
-                                <li>Access Profile: {{user.preferences[0].access_profile}}</li>
-                                <li>Access Groups: {{user.preferences[0].access_groups}}</li>
-                                <li>Access Friends: {{user.preferences[0].access_friends}}</li>
-                                <li>Access Rides: {{user.preferences[0].access_rides}}</li>
-                                <li>Access Photos: {{user.preferences[0].access_photos}}</li>
-                            </ul>
-                            <div class="segment-subheader">Notifications</div>
-                            <ul class="preferences-list">
-                                <li>Notify Email Activity: {{user.preferences[0].notify_email_activity}}</li>
-                                <li>Notify Email Alerts: {{user.preferences[0].notify_email_alerts}}</li>
-                                <li>Notify SMS Activity: {{user.preferences[0].notify_sms_activity}}</li>
-                                <li>Notify SMS Alerts: {{user.preferences[0].notify_sms_alerts}}</li>
-                            </ul>
-                            <div class="segment-subheader">Address</div>
-                            <ul class="preferences-list">
-                                <li>Address Show All: {{user.preferences[0].address_show_all}}</li>
-                                <li>Address Show Street: {{user.preferences[0].address_show_street}}</li>
-                                <li>Address Show City: {{user.preferences[0].address_show_city}}</li>
-                                <li>Address Show State: {{user.preferences[0].address_show_state}}</li>
-                                <li>Address Show ZIP: {{user.preferences[0].address_show_zip}}</li>
-                            </ul>
+                            <uib-tabset>
+                                <uib-tab index="0" heading="Access">
+                                    <div>
+                                        <table class="table table-striped table-hover table-preferences">
+                                            <thead>
+                                            <tr>
+                                                <td>&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>
+                                                    <label for="preferences-access-profile" class="preferences-label">My Profile:</label>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="btn-group" id="preferences-access-profile">
+                                                        <label class="btn btn-primary btn-xs" ng-model="user.preferences[0].access_profile" uib-btn-checkbox btn-checkbox-true="1">Public</label>
+                                                        <label class="btn btn-primary btn-xs" ng-model="user.preferences[0].access_profile" uib-btn-checkbox btn-checkbox-true="0">Private</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label for="preferences-access-groups" class="preferences-label">My Groups:</label>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="btn-group" id="preferences-access-groups">
+                                                        <label class="btn btn-primary btn-xs" ng-model="user.preferences[0].access_groups" uib-btn-checkbox btn-checkbox-true="1">Public</label>
+                                                        <label class="btn btn-primary btn-xs" ng-model="user.preferences[0].access_groups" uib-btn-checkbox btn-checkbox-true="0">Private</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label for="preferences-access-friends" class="preferences-label">My Friends:</label>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="btn-group" id="preferences-access-friends">
+                                                        <label class="btn btn-primary btn-xs" ng-model="user.preferences[0].access_friends" uib-btn-checkbox btn-checkbox-true="1">Public</label>
+                                                        <label class="btn btn-primary btn-xs" ng-model="user.preferences[0].access_friends" uib-btn-checkbox btn-checkbox-true="0">Private</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label for="preferences-access-rides" class="preferences-label">My Rides:</label>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="btn-group" id="preferences-access-rides">
+                                                        <label class="btn btn-primary btn-xs" ng-model="user.preferences[0].access_rides" uib-btn-checkbox btn-checkbox-true="1">Public</label>
+                                                        <label class="btn btn-primary btn-xs" ng-model="user.preferences[0].access_rides" uib-btn-checkbox btn-checkbox-true="0">Private</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label for="preferences-access-photos" class="preferences-label">My Photos:</label>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="btn-group" id="preferences-access-photos">
+                                                        <label class="btn btn-primary btn-xs" ng-model="user.preferences[0].access_photos" uib-btn-checkbox btn-checkbox-true="1">Public</label>
+                                                        <label class="btn btn-primary btn-xs" ng-model="user.preferences[0].access_photos" uib-btn-checkbox btn-checkbox-true="0">Private</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </uib-tab>
+                                <uib-tab index="1" heading="Notifications">
+                                    <div>
+
+                                        <table class="table table-striped table-hover table-preferences">
+                                            <thead>
+                                                <tr>
+                                                    <td>&nbsp;</td>
+                                                    <td class="text-center">&nbsp;</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <label for="preferences-notificiations-email-activity" class="preferences-label">Email Activity:</label>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <div class="btn-group" id="preferences-notificiations-email-activity">
+                                                            <label class="btn btn-primary btn-xs" ng-model="user.preferences[0].notify_email_activity" uib-btn-checkbox btn-checkbox-true="1">On</label>
+                                                            <label class="btn btn-primary btn-xs" ng-model="user.preferences[0].notify_email_activity" uib-btn-checkbox btn-checkbox-true="0">Off</label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label for="preferences-notificiations-email-alerts" class="preferences-label">Email Alerts:</label>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <div class="btn-group" id="preferences-notificiations-email-alerts">
+                                                            <label class="btn btn-primary btn-xs" ng-model="user.preferences[0].notify_email_alerts" uib-btn-checkbox btn-checkbox-true="1">On</label>
+                                                            <label class="btn btn-primary btn-xs" ng-model="user.preferences[0].notify_email_alerts" uib-btn-checkbox btn-checkbox-true="0">Off</label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label for="preferences-notificiations-sms-activity" class="preferences-label">SMS Activity:</label>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <div class="btn-group" id="preferences-notificiations-sms-activity">
+                                                            <label class="btn btn-primary btn-xs" ng-model="user.preferences[0].notify_sms_activity" uib-btn-checkbox btn-checkbox-true="1">On</label>
+                                                            <label class="btn btn-primary btn-xs" ng-model="user.preferences[0].notify_sms_activity" uib-btn-checkbox btn-checkbox-true="0">Off</label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label for="preferences-notificiations-sms-alerts" class="preferences-label">Email Alerts:</label>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <div class="btn-group" id="preferences-notificiations-sms-alerts">
+                                                            <label class="btn btn-primary btn-xs" ng-model="user.preferences[0].notify_sms_alerts" uib-btn-checkbox btn-checkbox-true="1">On</label>
+                                                            <label class="btn btn-primary btn-xs" ng-model="user.preferences[0].notify_sms_alerts" uib-btn-checkbox btn-checkbox-true="0">Off</label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </uib-tab>
+                                <uib-tab index="2" heading="Addresses">
+                                    <div>
+
+                                        <table class="table table-striped table-hover table-preferences">
+                                            <thead>
+                                            <tr>
+                                                <td>&nbsp;</td>
+                                                <td class="text-center">&nbsp;</td>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>
+                                                    <label for="preferences-address-show-all" class="preferences-label">Show All:</label>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="btn-group" id="preferences-address-show-all">
+                                                        <label class="btn btn-primary btn-xs" ng-model="user.preferences[0].address_show_all" uib-btn-checkbox btn-checkbox-true="1">On</label>
+                                                        <label class="btn btn-primary btn-xs" ng-model="user.preferences[0].address_show_all" uib-btn-checkbox btn-checkbox-true="0">Off</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label for="preferences-address-show-street" class="preferences-label">Show Street:</label>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="btn-group" id="preferences-address-show-street">
+                                                        <label class="btn btn-primary btn-xs" ng-model="user.preferences[0].address_show_street" uib-btn-checkbox btn-checkbox-true="1">On</label>
+                                                        <label class="btn btn-primary btn-xs" ng-model="user.preferences[0].address_show_street" uib-btn-checkbox btn-checkbox-true="0">Off</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label for="preferences-address-show-city" class="preferences-label">Show City:</label>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="btn-group" id="preferences-address-show-city">
+                                                        <label class="btn btn-primary btn-xs" ng-model="user.preferences[0].address_show_city" uib-btn-checkbox btn-checkbox-true="1">On</label>
+                                                        <label class="btn btn-primary btn-xs" ng-model="user.preferences[0].address_show_city" uib-btn-checkbox btn-checkbox-true="0">Off</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label for="preferences-address-show-state" class="preferences-label">Show State:</label>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="btn-group" id="preferences-address-show-state">
+                                                        <label class="btn btn-primary btn-xs" ng-model="user.preferences[0].address_show_state" uib-btn-checkbox btn-checkbox-true="1">On</label>
+                                                        <label class="btn btn-primary btn-xs" ng-model="user.preferences[0].address_show_state" uib-btn-checkbox btn-checkbox-true="0">Off</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label for="preferences-address-show-zip" class="preferences-label">Show ZIP:</label>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="btn-group" id="preferences-address-show-zip">
+                                                        <label class="btn btn-primary btn-xs" ng-model="user.preferences[0].address_show_zip" uib-btn-checkbox btn-checkbox-true="1">On</label>
+                                                        <label class="btn btn-primary btn-xs" ng-model="user.preferences[0].address_show_zip" uib-btn-checkbox btn-checkbox-true="0">Off</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </uib-tab>
+                            </uib-tabset>
+
                         </div>
                     </div>
                 </div>

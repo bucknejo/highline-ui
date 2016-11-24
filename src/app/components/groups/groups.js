@@ -5,6 +5,7 @@ angular.module('highline-ui').controller('HighlineGroupsController', ['$rootScop
     // initialization
     $scope.debug = true;
     $scope.gruppe = new Gruppe();
+    $scope.gruppes = [];
     $scope.friends = [];
     $scope.user_id = HighlineAuthentication.getUserId();
 
@@ -26,6 +27,13 @@ angular.module('highline-ui').controller('HighlineGroupsController', ['$rootScop
 
         $http(request).then(function success(response) {
             $scope.gruppes = response.data;
+
+            if (angular.isArray($scope.gruppes) && $scope.gruppes.length > 0) {
+                if (!$scope.idSelected) {
+                    $scope.idSelected = $scope.gruppes[0].id;
+                }
+                $scope.gruppeDetail($scope.idSelected);
+            }
         }, function error(response) {
             $log.info('error getting gruppes by user: ' + JSON.stringify(response));
         });
@@ -36,7 +44,7 @@ angular.module('highline-ui').controller('HighlineGroupsController', ['$rootScop
 
         var request = {
             method: 'GET',
-                    url: HIGHLINE.SERVER.RESOURCE + 'service/friend/' + $scope.user_id + '/gruppe/' + $scope.gruppe.id
+            url: HIGHLINE.SERVER.RESOURCE + 'service/friend/' + $scope.user_id + '/gruppe/' + $scope.gruppe.id
         };
 
         if ($scope.gruppe.id) {
@@ -60,7 +68,6 @@ angular.module('highline-ui').controller('HighlineGroupsController', ['$rootScop
 
     // get details for gruppe selected from list
     $scope.gruppeDetail = function(id) {
-        $log.info('in gruppe detail: ' + id);
         $scope.idSelected = id;
 
         // set the current gruppe in scope
@@ -74,8 +81,6 @@ angular.module('highline-ui').controller('HighlineGroupsController', ['$rootScop
     // call server for latest gruppes and friends
     $scope.refresh = function() {
         $scope.getGruppesByUser();
-        //$scope.getAvailableFriendsForGruppe();
-        $scope.gruppeDetail($scope.idSelected || 0);
     };
 
     $scope.refresh();

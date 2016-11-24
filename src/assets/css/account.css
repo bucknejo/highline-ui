@@ -1,4 +1,4 @@
-#highline-account {}
+#highline-account {  }
 
 #highline-account .equipment-table {
     color: #333;
@@ -20,4 +20,30 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
+}
+
+#highline-account .table-preferences {
+    color: #333;
+    font-size: .7em;
+}
+
+#highline-account .table-preferences thead {
+    font-weight: bold;
+}
+
+#highline-account .table-preferences tr {
+}
+
+#highline-account .table-preferences tr td {
+}
+
+#highline-account .preferences-label {
+    font-weight: normal;
+}
+
+
+#highline-account .edit {
+    color: #465a9b;
+    cursor: hand;
+    cursor: pointer;
 }
