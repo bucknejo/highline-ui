@@ -9,7 +9,7 @@ angular.module('highline-ui').directive('highlineQuickActions', [function() {
         templateUrl: 'app/shared/directives/templates/highline-quick-actions.tpl.html',
         controller: ['$scope', '$state', '$attrs', function($scope, $state, $attrs) {
 
-            $scope.actions = ['account', 'dashboard', 'friends', 'groups', 'rides'];
+            $scope.actions = ['account', 'dashboard', 'friends', 'groups', 'profile', 'rides'];
 
             $scope.actionSelected = 0;
 

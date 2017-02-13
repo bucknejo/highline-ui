@@ -1,0 +1,88 @@
+<div id="highline-profile">
+    <div class="row">
+        <div class="col-md-2">
+            <div ui-view="left"></div>
+        </div>
+        <div class="col-md-8">
+            <!-- main profile image -->
+            <div class="row segment">
+                <div class="col-md-12">
+                    <img src="assets/img/common/boba-fett.jpg" alt="" class="img-responsive center-block"/>
+                </div>
+            </div>
+            <!-- user info -->
+            <div class="row segment">
+                <div class="col-md-12">
+                    <uib-tabset>
+                        <uib-tab index="0" heading="Personal Info">
+
+                            <div class="row segment-tab">
+                                <div class="col-md-12">
+                                    <div class="segment-header">Info</div>
+                                    <table class="profile-table">
+                                        <thead></thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="profile-label">Name:</div>
+                                                </td>
+                                                <td>
+                                                    <div class="profile-info">{{ user.first_name + " " + user.last_name}}</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="profile-label">Location:</div>
+                                                </td>
+                                                <td>
+                                                    <div class="profile-info">{{ location.city + ", " + location.state}}</div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </uib-tab>
+                        <uib-tab index="1" heading="Story">
+
+                        </uib-tab>
+                        <uib-tab index="2" heading="Groups">
+
+                        </uib-tab>
+                        <uib-tab index="3" heading="Equipment">
+
+                        </uib-tab>
+                    </uib-tabset>
+                </div>
+            </div>
+            <!-- user activity -->
+            <div class="row segment">
+                <div class="col-md-12">
+                    <uib-tabset>
+                        <uib-tab index="0" heading="Current Rides"></uib-tab>
+                        <uib-tab index="1" heading="History"></uib-tab>
+                    </uib-tabset>
+                </div>
+            </div>
+            <!-- user photos -->
+            <div class="row segment">
+                <div class="col-md-12">
+
+                </div>
+            </div>
+
+            <div class="row segment">
+                <div class="col-md-12">
+                    <pre ng-show="debug">
+                        {{user | json}}
+                    </pre>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-2">
+            <div ui-view="right"></div>
+        </div>
+    </div>
+</div>

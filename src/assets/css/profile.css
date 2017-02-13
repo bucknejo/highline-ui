@@ -1,0 +1,33 @@
+#highline-profile {}
+
+#highline-profile .segment {
+    margin-bottom: 5vh;
+}
+
+#highline-profile .segment-tab {
+    margin: 10px;
+}
+
+#highline-profile .profile-table {
+    color: #666;
+    font-size: .8em;
+}
+
+#highline-profile .profile-table tr {
+
+}
+
+#highline-profile .profile-table tr td {
+
+}
+
+#highline-profile .profile-table tr td .profile-label {
+    font-weight: bold;
+    padding-right: 15px;
+}
+
+#highline-profile .profile-table tr td .profile-info {
+    color: #999;
+    font-style: italic;
+}
+

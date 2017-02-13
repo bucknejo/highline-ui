@@ -50,8 +50,19 @@
             </li>
             <li>
                 <div class="qa-action"
+                     ng-click="navigateTo('profile')"
+                     ng-class="{'qa-selected': actionSelected === 4}">Profile
+                </div>
+            </li>
+            <li>
+                <div>
+                    <img src="assets/img/common/double-black.jpg" height="15" width="15" alt="Mountain Biking Group Riding" />
+                </div>
+            </li>
+            <li>
+                <div class="qa-action"
                       ng-click="navigateTo('rides')"
-                      ng-class="{'qa-selected': actionSelected === 4}">Rides
+                      ng-class="{'qa-selected': actionSelected === 5}">Rides
                 </div>
             </li>
         </ul>

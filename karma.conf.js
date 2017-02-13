@@ -18,8 +18,8 @@ module.exports = function(config) {
         'assets/libs/jquery/dist/jquery.js',
         'assets/libs/bootstrap/dist/js/bootstrap.js',
         'assets/js/*.js',
-        'app/**/*.js',
-        'app/test/*.js'
+        'test/**/*.js',
+        'test/*.js'
     ],
 
     autoWatch: true,

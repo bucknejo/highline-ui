@@ -168,6 +168,24 @@ highline.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 'plupl
     controller: 'HighlineLogoutController'
   };
 
+  var profile = {
+    name: 'profile',
+    url: '/profile',
+    views: {
+      '': {
+        templateUrl: 'app/components/profile/profile.tpl.html',
+        controller: 'HighlineProfileController'
+      },
+      'left@profile': {
+        templateUrl: 'app/components/profile/templates/profile-alley-left.tpl.html'
+      },
+      'right@profile': {
+        templateUrl: 'app/components/profile/templates/profile-alley-right.tpl.html'
+      }
+    }
+
+  };
+
   var rides = {
     name: 'rides',
     url: '/rides',
@@ -190,7 +208,8 @@ highline.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 'plupl
     url: '/sandbox',
     views: {
       '': {
-        templateUrl: 'app/components/sandbox/sandbox.tpl.html'
+        templateUrl: 'app/components/sandbox/sandbox.tpl.html',
+        controller: 'HighlineSandboxController'
       },
       'left@sandbox': {
         templateUrl: 'app/components/sandbox/templates/sandbox-alley-left.tpl.html'
@@ -211,6 +230,7 @@ highline.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 'plupl
   $stateProvider.state(home);
   $stateProvider.state(login);
   $stateProvider.state(logout);
+  $stateProvider.state(profile);
   $stateProvider.state(rides);
   $stateProvider.state(sandbox);
 

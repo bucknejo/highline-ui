@@ -161,6 +161,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('dev', [ 'bower', 'connect:server', 'watch:dev' ]);
     grunt.registerTask('test', [ 'bower', 'jshint', 'karma:continuous' ]);
+    grunt.registerTask('unit', ['bower', 'jshint', 'karma:unit']);
     grunt.registerTask('minified', [ 'bower', 'connect:server', 'watch:min' ]);
     grunt.registerTask('package', [ 'bower', 'clean:dist', 'jshint', 'karma:unit', 'html2js:dist', 'concat:dist', 'uglify:dist',
         'clean:temp', 'compress:dist' ]);
