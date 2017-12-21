@@ -95,6 +95,13 @@ module.exports = function(grunt) {
                     port: 8090,
                     base: 'src'
                 }
+            },
+            test: {
+                options: {
+                    hostname: 'localhost',
+                    port: 8092,
+                    base: 'src'
+                }
             }
         },
 
@@ -145,6 +152,24 @@ module.exports = function(grunt) {
                 singleRun: false,
                 autoWatch: true
             }
+        },
+
+        protractor: {
+            options: {
+                configFile: 'e2e-tests/protractor.conf.js',
+                noColor: false,
+                args: {}
+            },
+            e2e: {
+                options: {
+                    keepAlive: false
+                }
+            },
+            continuous: {
+                options: {
+                    keepAlive: true
+                }
+            }
         }
     });
 
@@ -158,10 +183,12 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-karma');
+    grunt.loadNpmTasks('grunt-protractor-runner');
 
     grunt.registerTask('dev', [ 'bower', 'connect:server', 'watch:dev' ]);
     grunt.registerTask('test', [ 'bower', 'jshint', 'karma:continuous' ]);
-    grunt.registerTask('unit', ['bower', 'jshint', 'karma:unit']);
+    grunt.registerTask('unit', ['jshint', 'karma:unit']);
+    grunt.registerTask('e2e', ['jshint', 'connect:test', 'protractor:e2e']);
     grunt.registerTask('minified', [ 'bower', 'connect:server', 'watch:min' ]);
     grunt.registerTask('package', [ 'bower', 'clean:dist', 'jshint', 'karma:unit', 'html2js:dist', 'concat:dist', 'uglify:dist',
         'clean:temp', 'compress:dist' ]);

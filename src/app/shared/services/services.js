@@ -1,6 +1,6 @@
 'use strict';
 
-var highlineServices = angular.module('highline-ui');
+var highlineServices = angular.module('highline-ui-services', ['ui.router', 'ui.bootstrap', 'ngMessages', 'ngResource', 'ngCookies', 'ngAnimate']);
 
 highlineServices.service('HighlineHttpService', ['$http', '$q', 'HIGHLINE', function($http, $q, HIGHLINE) {
 
@@ -460,4 +460,50 @@ highlineServices.factory('Sandbox', ['$resource', function($resource){
     return $resource('/highline/service/ride/get', {}, {
         query: {method: 'GET', params: {}, isArray: true}
     });
+}]);
+
+highlineServices.factory('TestSandbox', [function(){
+    var testSandbox = {
+        bucket1: 0,
+        bucket2: 1
+    };
+
+    testSandbox.function1 = function(arg1, arg2) {
+        return arg1 + arg2;
+    };
+
+    testSandbox.function2 = function(arg1, arg2) {
+        return arg1 * arg2;
+    };
+
+    testSandbox.setBucket1 = function(value) {
+        testSandbox.bucket1 = value;
+    };
+
+    testSandbox.getBucket1 = function() {
+        return testSandbox.bucket1;
+    };
+
+    testSandbox.setBucket2 = function(value) {
+        testSandbox.bucket2 = value;
+    };
+
+    testSandbox.getBucket2 = function() {
+        return testSandbox.bucket2;
+    };
+
+    testSandbox.callFakeFunction = function() {
+        return 0;
+    };
+
+    testSandbox.throwsError = function() {
+        return 1;
+    };
+
+    testSandbox.trackingCalls = function(a, b) {
+        return a + b;
+    };
+
+    return testSandbox;
+
 }]);

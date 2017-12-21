@@ -72,3 +72,15 @@ highlineFilters.filter('activityType', function() {
         return icon;
     };
 });
+
+highlineFilters.filter('checkedItems', function() {
+    return function(items, showComplete) {
+        var resultArr = [];
+        angular.forEach(items, function(item){
+            if (!item.done || showComplete) {
+                resultArr.push(item);
+            }
+        });
+        return resultArr;
+    };
+});

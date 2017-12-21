@@ -17,7 +17,10 @@ module.exports = function(config) {
         'assets/libs/angular-messages/angular-messages.js',
         'assets/libs/jquery/dist/jquery.js',
         'assets/libs/bootstrap/dist/js/bootstrap.js',
+        'assets/libs/plupload/js/plupload.full.min.js',
+        'assets/libs/angular-plupload/dist/angular-plupload.min.js',
         'assets/js/*.js',
+        'app/**/*.js',
         'test/**/*.js',
         'test/*.js'
     ],

@@ -1,7 +1,7 @@
 'use strict';
 
 // Declare app level module
-var highline = angular.module('highline-ui', ['ui.router', 'ui.bootstrap', 'ngMessages', 'ngResource', 'ngCookies', 'ngAnimate', 'angular-plupload']);
+var highline = angular.module('highline-ui', ['ui.router', 'ui.bootstrap', 'ngMessages', 'ngResource', 'ngCookies', 'ngAnimate', 'highline-ui-services']);
 
 // Declare app level contants
 highline.constant("HIGHLINE", {
@@ -16,7 +16,7 @@ highline.constant("HIGHLINE", {
 });
 
 // Declare app level states
-highline.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 'pluploadOptionProvider', function($stateProvider, $urlRouterProvider, $httpProvider, pluploadOptionProvider) {
+highline.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $httpProvider) {
 
   var account = {
     name: 'account',
@@ -240,12 +240,14 @@ highline.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 'plupl
   //$httpProvider.defaults.useXDomain = true;
   //delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
+  /*
   pluploadOptionProvider.setOptions({
     runtimes: 'html5,flash,silverlight,html4',
     flash_swf_url: 'assets/libs/plupload/js/Moxie.swf',
     silverlight_xap_url: 'assets/libs/plupload/js/Moxie.xap',
     max_file_size: '10mb'
   });
+  */
 
 }]);
 
